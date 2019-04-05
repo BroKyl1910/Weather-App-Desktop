@@ -138,7 +138,12 @@ namespace _18003144_Task_1_v2
 
                 //List of forecasts which match date, decides which forecast to put on the card
                 List<UserForecast> fc = matchingForecasts.Where(o => o.ForecastDate.Date.Equals(date.Date)).ToList();
-                foreach(UserForecast forecast in fc)
+
+                //List of cities with no forecast for that day
+                List<UserForecast> nm = forecasts.Where(o => !o.ForecastDate.Date.Equals(date.Date)).ToList();
+                Console.WriteLine();
+
+                foreach (UserForecast forecast in fc)
                 {
                     MaterialDesignThemes.Wpf.Card card = new MaterialDesignThemes.Wpf.Card();
                     card.Background = new SolidColorBrush(Color.FromArgb(51, 0, 0, 0));
@@ -270,8 +275,6 @@ namespace _18003144_Task_1_v2
 
 
 
-
-
                     //Adding controls to UI
                     grid.Children.Add(lblCity);
                     grid.Children.Add(lblDate);
@@ -288,9 +291,7 @@ namespace _18003144_Task_1_v2
                     grid.Children.Add(nvPrecipitation);
                     stackPanel.Children.Add(card);
                 }
-                
-                //List of cities with no match
-                //List<UserForecast> nm = matchingForecasts.Where(o => o.ForecastDate.Date.Equals(date.Date)).ToList();
+               
 
                 Console.WriteLine("");  
             }

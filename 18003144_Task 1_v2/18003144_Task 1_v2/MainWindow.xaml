@@ -16,10 +16,7 @@
         Background="{DynamicResource MaterialDesignPaper}"
         FontFamily="{DynamicResource MaterialDesignFont}" Loaded="Window_Loaded" Activated="Window_Activated" Closed="Window_Closed">
     <Grid x:Name="grdMain" Margin="0,0,0,0">
-        <Grid.Background>
-            <ImageBrush ImageSource="G:\C#\18003144_Task 1_v2\18003144_Task 1_v2\bin\Debug\BackgroundImages\cloudy.jpg" Stretch="UniformToFill" Opacity="0.3"/>
-            <!--<ImageBrush Stretch="UniformToFill" Opacity="0.3"/>-->
-        </Grid.Background>
+        
         <DockPanel x:Name="pnlNavigation" HorizontalAlignment="Left" VerticalAlignment="Top" Height="53" Width="833"  Background="#33000000">
             <Button x:Name="btnHome" Content="Home" HorizontalAlignment="Left" Width="150" Margin="0,0,0,0" Height="Auto" Background="#33000000" Foreground="White"/>
             <Button x:Name="btnViewForecasts" Content="View Forecasts" HorizontalAlignment="Left" Width="150" Margin="0,0,0,0" Height="Auto" Background="#00000000" Foreground="White" Click="BtnViewForecasts_Click"/>

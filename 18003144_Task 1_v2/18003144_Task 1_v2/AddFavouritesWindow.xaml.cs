@@ -39,22 +39,6 @@ namespace _18003144_Task_1_v2
             txtCity.Focus();
         }
 
-        //private void populateDictionaryOfCities()
-        //{
-        //    CityFile cityFile;
-        //    using (StreamReader file = File.OpenText("cities.json"))
-        //    {
-        //        JsonSerializer serializer = new JsonSerializer();
-        //        cityFile = (CityFile)serializer.Deserialize(file, typeof(CityFile));
-        //    }
-
-        //    foreach (City city in cityFile.cities)
-        //    {
-        //        NameCityDict.Add(city.name + ", " + city.country + ", " + city.id, city);
-        //    }
-
-        //}
-
         private void chooseBackground()
         {
             string directoryPath = Directory.GetCurrentDirectory() + "/BackgroundImages/";
