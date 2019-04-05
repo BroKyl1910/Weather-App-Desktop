@@ -1,0 +1,28 @@
+﻿<Window
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:_18003144_Task_1_v2"
+        xmlns:System="clr-namespace:System;assembly=mscorlib" x:Class="_18003144_Task_1_v2.AddFavouritesWindow"
+        mc:Ignorable="d"
+        Title="Add Favourites"  Height="835.5" Width="841" 
+        TextElement.Foreground="{DynamicResource MaterialDesignBody}"
+        TextElement.FontWeight="Regular"
+        TextElement.FontSize="13"
+        TextOptions.TextFormattingMode="Ideal"
+        TextOptions.TextRenderingMode="Auto"
+        Background="{DynamicResource MaterialDesignPaper}"
+        FontFamily="{DynamicResource MaterialDesignFont}" Loaded="Window_Loaded">
+    <Grid x:Name="grdMain">
+        <Grid.Background>
+            <ImageBrush Stretch="UniformToFill" Opacity="0.3"/>
+        </Grid.Background>
+
+
+        <TextBlock Margin="10,98,10,0" FontSize="22" TextWrapping="Wrap" Text="Add To Favourites" VerticalAlignment="Top" Width="Auto" TextAlignment="Center"/>
+        <TextBox x:Name="txtCity" FontSize="16" Height="40" Margin="246,124,263,0" TextWrapping="Wrap" ToolTip="City Name" VerticalAlignment="Top" TextChanged="TextBox_TextChanged"/>
+        <ListBox x:Name="lstCities" Margin="246,169,263,0" SelectionChanged="LstCities_SelectionChanged" ScrollViewer.VerticalScrollBarVisibility="Hidden" Height="262" VerticalAlignment="Top"/>
+
+    </Grid>
+</Window>
