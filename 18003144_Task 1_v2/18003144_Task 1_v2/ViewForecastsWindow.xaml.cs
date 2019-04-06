@@ -36,7 +36,7 @@ namespace _18003144_Task_1_v2
         {
             chooseBackground();
             codeCityDict = CityUtilities.getCityCodeDict();
-            getForecastsFromFile();
+            forecasts = FileUtilities.getForecastsFromFile();
             populateListBox();
 
             dtpFrom.SelectedDate = DateTime.Now;
@@ -55,20 +55,6 @@ namespace _18003144_Task_1_v2
             foreach(var city in distinctCities)
             {
                 lstCities.Items.Add(city);
-            }
-        }
-
-        private void getForecastsFromFile()
-        {
-            using (StreamReader file = new StreamReader("Forecasts.txt"))
-            {
-                string line = file.ReadLine();
-                while (line != null)
-                {
-                    var lineParts = line.Split(',');
-                    forecasts.Add(new UserForecast(Convert.ToInt32(lineParts[0]), Convert.ToDateTime(lineParts[1]), Convert.ToInt32(lineParts[2]), Convert.ToInt32(lineParts[3]), Convert.ToInt32(lineParts[4]), Convert.ToInt32(lineParts[5]), Convert.ToInt32(lineParts[6])));
-                    line = file.ReadLine();
-                }
             }
         }
 
@@ -118,20 +104,17 @@ namespace _18003144_Task_1_v2
 
             //List of all forecasts with same city and date
             List<UserForecast> matchingForecasts = getMatchingForecasts();
-            
-            //List of distinct dates from forecasts for each tab
-            //List<DateTime> forecastDates = matchingForecasts.Select(o => o.ForecastDate).Distinct().ToList();
 
             tbctrlForecasts.Visibility = Visibility.Visible;
 
             DateTime dt = (DateTime) dtpFrom.SelectedDate;
-                                                         
-            while(dt.Date.CompareTo(((DateTime)dtpTo.SelectedDate).Date) <= 0)
+
+            while (dt.Date.CompareTo(((DateTime)dtpTo.SelectedDate).Date) <= 0)
             {
                 var date = dt;
                 TabItem tabItem = new TabItem();
                 tabItem.Padding = new Thickness(5);
-
+                tabItem.Header = dt.ToLongDateString();
 
                 tbctrlForecasts.Items.Add(tabItem);
 

@@ -213,7 +213,7 @@ namespace _18003144_Task_1_v2
 
         private void BtnSave_Click(object sender, RoutedEventArgs e)
         {
-            if (!checkValidInputsSave()) return;
+            if (!checkValidInputsSave() || !unique()) return;
 
             crdError.Visibility = Visibility.Hidden;
 
@@ -225,6 +225,20 @@ namespace _18003144_Task_1_v2
                 clearForm();
             }
 
+        }
+
+        private bool unique()
+        {
+            List<UserForecast> fc = FileUtilities.getForecastsFromFile();
+            DateTime selectedDate = ((DateTime) dtpDate.SelectedDate).Date;
+            int selectedCityID = ((City)lstCities.SelectedItem).id;
+            if(fc.Where(f => f.CityID == selectedCityID && f.ForecastDate.Date == selectedDate).ToList().Count > 0)
+            {
+                crdError.Visibility = Visibility.Visible;
+                lblError.Text = "Already have a forecast for this city on this date";
+                return false;
+            }
+            return true;
         }
 
         private bool checkValidInputsSave()
