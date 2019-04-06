@@ -107,3 +107,5 @@ E:\Programs\Task 1\18003144_Task 1_v2\18003144_Task 1_v2\obj\Debug\18003144_Task
 E:\Programs\Task 1\18003144_Task 1_v2\18003144_Task 1_v2\obj\Debug\18003144_Task 1_v2.csproj.CopyComplete
 E:\Programs\Task 1\18003144_Task 1_v2\18003144_Task 1_v2\obj\Debug\18003144_Task 1_v2.exe
 E:\Programs\Task 1\18003144_Task 1_v2\18003144_Task 1_v2\obj\Debug\18003144_Task 1_v2.pdb
+E:\Programs\Task 1\18003144_Task 1_v2\18003144_Task 1_v2\obj\Debug\EditForecastWindow.g.cs
+E:\Programs\Task 1\18003144_Task 1_v2\18003144_Task 1_v2\obj\Debug\EditForecastWindow.baml

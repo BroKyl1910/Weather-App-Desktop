@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace _18003144_Task_1_v2
 {
-    class UserForecast
+    public class UserForecast
     {
         private int cityID;
         private DateTime forecastDate;

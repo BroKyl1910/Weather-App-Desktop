@@ -342,7 +342,14 @@ namespace _18003144_Task_1_v2
         private void BtnEdit_Click(object sender, RoutedEventArgs e)
         {
             Button editBtn = (Button)sender;
-            MessageBox.Show(editBtn.Name);
+            string usefulBits = editBtn.Name.Substring(7);
+            var usefulBitsArr = usefulBits.Split('_');
+            int cityId = Convert.ToInt32(usefulBitsArr[0]);
+            DateTime date = new DateTime(Convert.ToInt16(usefulBitsArr[1]), Convert.ToInt16(usefulBitsArr[2]), Convert.ToInt16(usefulBitsArr[3]));
+            UserForecast clickedForecast = forecasts.Where(o => o.CityID == cityId && o.ForecastDate.Date.Equals(date.Date)).ToList()[0];
+
+            new EditForecastWindow(clickedForecast).Show();
+            this.Hide();
         }
 
         private bool validInputs()

@@ -6,7 +6,7 @@
         xmlns:local="clr-namespace:_18003144_Task_1_v2"
         xmlns:System="clr-namespace:System;assembly=mscorlib" x:Class="_18003144_Task_1_v2.AddFavouritesWindow"
         mc:Ignorable="d"
-        Title="Add Favourites"  Height="835.5" Width="841" 
+        Title="Add Favourites"  Height="709.632" Width="728.153" 
         TextElement.Foreground="{DynamicResource MaterialDesignBody}"
         TextElement.FontWeight="Regular"
         TextElement.FontSize="13"

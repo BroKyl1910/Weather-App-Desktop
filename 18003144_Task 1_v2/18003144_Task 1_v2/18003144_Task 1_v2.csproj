@@ -75,6 +75,9 @@
       <SubType>Designer</SubType>
     </ApplicationDefinition>
     <Compile Include="CityUtilities.cs" />
+    <Compile Include="EditForecastWindow.xaml.cs">
+      <DependentUpon>EditForecastWindow.xaml</DependentUpon>
+    </Compile>
     <Compile Include="FileUtilities.cs" />
     <Compile Include="UserForecast.cs" />
     <Compile Include="ViewForecastsWindow.xaml.cs">
@@ -85,6 +88,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="CreateForecastWindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="EditForecastWindow.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

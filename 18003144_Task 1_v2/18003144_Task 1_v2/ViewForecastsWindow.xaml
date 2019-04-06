@@ -6,7 +6,7 @@
         xmlns:local="clr-namespace:_18003144_Task_1_v2"
         xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes" xmlns:mah="http://metro.mahapps.com/winfx/xaml/controls" x:Class="_18003144_Task_1_v2.ViewForecastsWindow"
         mc:Ignorable="d"
-        Title="View Forecasts"  Height="835.5" Width="841"    
+        Title="View Forecasts"  Height="835.5" Width="841" 
         TextElement.Foreground="{DynamicResource MaterialDesignBody}"
         TextElement.FontWeight="Regular"
         TextElement.FontSize="13"
