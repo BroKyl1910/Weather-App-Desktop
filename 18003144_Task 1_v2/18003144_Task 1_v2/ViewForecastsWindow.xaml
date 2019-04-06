@@ -1,4 +1,4 @@
-﻿<Window
+﻿    <Window
         xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
@@ -14,6 +14,7 @@
         TextOptions.TextRenderingMode="Auto"
         Background="{DynamicResource MaterialDesignPaper}"
         FontFamily="{DynamicResource MaterialDesignFont}" Loaded="Window_Loaded" Closed="Window_Closed">
+
     <Grid x:Name="grdMain" Margin="0,0,0,0">
         <Grid.Background>
             <!--<ImageBrush ImageSource="G:\C#\18003144_Task 1_v2\18003144_Task 1_v2\bin\Debug\BackgroundImages\cloudy.jpg" Stretch="UniformToFill" Opacity="0.3"/>-->
@@ -36,7 +37,6 @@
                     <DatePicker x:Name="dtpTo" FontSize="20" HorizontalAlignment="Left" Margin="397,86,0,0" VerticalAlignment="Top" Width="352"/>
                     <Button x:Name="btnGetForecasts" Content="Get Forecasts" FontSize="20" Margin="596,143,0,0" VerticalAlignment="Top" Height="51" Width="Auto" Background="#33000000" Foreground="White" HorizontalAlignment="Left" Click="BtnGetForecasts_Click"/>
                     <TabControl x:Name="tbctrlForecasts" HorizontalAlignment="Left" Margin="22,256,0,10" Width="726" Background="#00000000" RenderTransformOrigin="0.5,0.5" Visibility="Hidden">
-                        <Grid/>
 
 
                     </TabControl>

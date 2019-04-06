@@ -120,14 +120,19 @@ namespace _18003144_Task_1_v2
             List<UserForecast> matchingForecasts = getMatchingForecasts();
             
             //List of distinct dates from forecasts for each tab
-            List<DateTime> forecastDates = matchingForecasts.Select(o => o.ForecastDate).Distinct().ToList();
+            //List<DateTime> forecastDates = matchingForecasts.Select(o => o.ForecastDate).Distinct().ToList();
 
             tbctrlForecasts.Visibility = Visibility.Visible;
 
-            foreach(var date in forecastDates)
+            DateTime dt = (DateTime) dtpFrom.SelectedDate;
+                                                         
+            while(dt.Date.CompareTo(((DateTime)dtpTo.SelectedDate).Date) <= 0)
             {
+                var date = dt;
                 TabItem tabItem = new TabItem();
-                tabItem.Header = date.Date.ToLongDateString();
+                tabItem.Padding = new Thickness(5);
+
+
                 tbctrlForecasts.Items.Add(tabItem);
 
                 ScrollViewer scrollViewer = new ScrollViewer();
@@ -139,10 +144,10 @@ namespace _18003144_Task_1_v2
                 //List of forecasts which match date, decides which forecast to put on the card
                 List<UserForecast> fc = matchingForecasts.Where(o => o.ForecastDate.Date.Equals(date.Date)).ToList();
 
-                //List of cities with no forecast for that day
-                List<UserForecast> nm = forecasts.Where(o => !o.ForecastDate.Date.Equals(date.Date)).ToList();
-                Console.WriteLine();
-
+                //List of cities that dont have forecasts for selected dates
+                List<City> nm = getSelectedCities().Where(o => forecasts.Where(f => f.ForecastDate.Date.Equals(date.Date) && f.CityID == o.id).ToList().Count == 0).ToList();
+                
+                //Make card for each forecast
                 foreach (UserForecast forecast in fc)
                 {
                     MaterialDesignThemes.Wpf.Card card = new MaterialDesignThemes.Wpf.Card();
@@ -291,14 +296,51 @@ namespace _18003144_Task_1_v2
                     grid.Children.Add(nvPrecipitation);
                     stackPanel.Children.Add(card);
                 }
-               
 
+                foreach(City c in nm)
+                {
+                    MaterialDesignThemes.Wpf.Card card = new MaterialDesignThemes.Wpf.Card();
+                    card.Background = new SolidColorBrush(Color.FromArgb(51, 0, 0, 0));
+                    card.Foreground = new SolidColorBrush(Colors.White);
+                    card.Margin = new Thickness(10);
+                    card.Padding = new Thickness(10, 10, 0, 50);
+
+                    Grid grid = new Grid();
+                    grid.Background = new SolidColorBrush(Color.FromArgb(0, 0, 0, 0));
+
+                    card.Content = grid;
+
+                    //City output
+                    TextBlock lblCity = new TextBlock();
+                    lblCity.VerticalAlignment = VerticalAlignment.Top;
+                    lblCity.HorizontalAlignment = HorizontalAlignment.Left;
+                    lblCity.FontSize = 28;
+                    lblCity.Margin = new Thickness(10, 10, 0, 0);
+                    lblCity.TextAlignment = TextAlignment.Center;
+                    lblCity.Text = c.name + ", " + c.country;
+
+                    //No forecast message
+                    TextBlock nvNoForecast = new TextBlock();
+                    nvNoForecast.VerticalAlignment = VerticalAlignment.Top;
+                    nvNoForecast.HorizontalAlignment = HorizontalAlignment.Left;
+                    nvNoForecast.FontSize = 22;
+                    nvNoForecast.Margin = new Thickness(98, 97, 0, 0);
+                    nvNoForecast.Text = "No forecast for "+date.ToLongDateString();
+
+                    grid.Children.Add(lblCity);
+                    grid.Children.Add(nvNoForecast);
+                    stackPanel.Children.Add(card);
+
+                }
+
+                dt = dt.AddDays(1);
                 Console.WriteLine("");  
             }
+
             tbctrlForecasts.SelectedIndex = 0;
 
-            
-            
+
+
         }
 
         private bool validInputs()
@@ -316,11 +358,7 @@ namespace _18003144_Task_1_v2
         private List<UserForecast> getMatchingForecasts()
         {
             List<UserForecast> matchingForecasts = new List<UserForecast>();
-            List<City> cities = new List<City>();
-            foreach (City c in lstCities.SelectedItems)
-            {
-                cities.Add(c);
-            }
+            List<City> cities = getSelectedCities();
             List<int> cityIds = cities.Select(o => o.id).ToList();
             DateTime startDate = (DateTime) dtpFrom.SelectedDate;
             DateTime endDate = (DateTime) dtpTo.SelectedDate;
@@ -334,6 +372,16 @@ namespace _18003144_Task_1_v2
             }
 
             return matchingForecasts;
+        }
+
+        private List<City> getSelectedCities()
+        {
+            List<City> cities = new List<City>();
+            foreach (City c in lstCities.SelectedItems)
+            {
+                cities.Add(c);
+            }
+            return cities;
         }
     }
 }
