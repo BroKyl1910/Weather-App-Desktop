@@ -47,12 +47,12 @@ namespace _18003144_Task_1_v2
         {
             lstCities.Items.Clear();
             List<City> cities = new List<City>();
-            foreach(var forecast in forecasts)
+            foreach (var forecast in forecasts)
             {
                 cities.Add(CityUtilities.getCityCodeDict()[forecast.CityID]);
             }
-            List<City> distinctCities = cities.Distinct().OrderBy(o=> o.name).ToList();
-            foreach(var city in distinctCities)
+            List<City> distinctCities = cities.Distinct().OrderBy(o => o.name).ToList();
+            foreach (var city in distinctCities)
             {
                 lstCities.Items.Add(city);
             }
@@ -108,7 +108,7 @@ namespace _18003144_Task_1_v2
 
             tbctrlForecasts.Visibility = Visibility.Visible;
 
-            DateTime dt = (DateTime) dtpFrom.SelectedDate;
+            DateTime dt = (DateTime)dtpFrom.SelectedDate;
 
             while (dt.Date.CompareTo(((DateTime)dtpTo.SelectedDate).Date) <= 0)
             {
@@ -130,7 +130,7 @@ namespace _18003144_Task_1_v2
 
                 //List of cities that dont have forecasts for selected dates
                 List<City> nm = getSelectedCities().Where(o => forecasts.Where(f => f.ForecastDate.Date.Equals(date.Date) && f.CityID == o.id).ToList().Count == 0).OrderBy(o => o.name).ToList();
-                
+
                 //Make card for each forecast
                 foreach (UserForecast forecast in fc)
                 {
@@ -138,11 +138,11 @@ namespace _18003144_Task_1_v2
                     card.Background = new SolidColorBrush(Color.FromArgb(51, 0, 0, 0));
                     card.Foreground = new SolidColorBrush(Colors.White);
                     card.Margin = new Thickness(10);
-                    card.Padding = new Thickness(10,10,0,50);
+                    card.Padding = new Thickness(10, 10, 0, 50);
 
                     Grid grid = new Grid();
                     grid.Background = new SolidColorBrush(Color.FromArgb(0, 0, 0, 0));
-                    
+
                     //nv = Non-value, not used to ouput values.....lbl used to output values
                     card.Content = grid;
 
@@ -206,7 +206,7 @@ namespace _18003144_Task_1_v2
                     lblMax.HorizontalAlignment = HorizontalAlignment.Left;
                     lblMax.FontSize = 22;
                     lblMax.Margin = new Thickness(419, 160, 0, 0);
-                    lblMax.Text = forecast.MaximumTemp+ " °C";
+                    lblMax.Text = forecast.MaximumTemp + " °C";
                     lblMax.FontStyle = FontStyles.Italic;
 
                     //Wind nv
@@ -222,7 +222,7 @@ namespace _18003144_Task_1_v2
                     lblWind.VerticalAlignment = VerticalAlignment.Top;
                     lblWind.HorizontalAlignment = HorizontalAlignment.Left;
                     lblWind.FontSize = 22;
-                    lblWind.Margin = new Thickness(419,191,0,0);
+                    lblWind.Margin = new Thickness(419, 191, 0, 0);
                     lblWind.Text = forecast.WindSpeed + " km/h";
                     lblWind.FontStyle = FontStyles.Italic;
 
@@ -258,9 +258,23 @@ namespace _18003144_Task_1_v2
                     lblPrecipitation.VerticalAlignment = VerticalAlignment.Top;
                     lblPrecipitation.HorizontalAlignment = HorizontalAlignment.Left;
                     lblPrecipitation.FontSize = 22;
-                    lblPrecipitation.Margin = new Thickness(419,253,0,0);
+                    lblPrecipitation.Margin = new Thickness(419, 253, 0, 0);
                     lblPrecipitation.Text = forecast.Precipitation + " %";
                     lblPrecipitation.FontStyle = FontStyles.Italic;
+
+                    //Edit button
+                    Button btnEdit = new Button();
+                    btnEdit.VerticalAlignment = VerticalAlignment.Top;
+                    btnEdit.HorizontalAlignment = HorizontalAlignment.Left;
+                    btnEdit.FontSize = 22;
+                    btnEdit.Padding = new Thickness(10,10,10,10);
+                    btnEdit.Margin = new Thickness(419, 10, 0, 0);
+                    btnEdit.Height = double.NaN;
+                    btnEdit.Content = "Edit Forecast";
+                    btnEdit.Name = "btnEdit" + forecast.CityID + "_" + forecast.ForecastDate.ToShortDateString().Replace('/', '_');
+                    btnEdit.Click += BtnEdit_Click;
+                    btnEdit.Foreground = new SolidColorBrush(Colors.White);
+                    btnEdit.Background = new SolidColorBrush(Color.FromArgb(51,0,0,0));
 
 
 
@@ -278,10 +292,11 @@ namespace _18003144_Task_1_v2
                     grid.Children.Add(nvHumidity);
                     grid.Children.Add(lblPrecipitation);
                     grid.Children.Add(nvPrecipitation);
+                    grid.Children.Add(btnEdit);
                     stackPanel.Children.Add(card);
                 }
 
-                foreach(City c in nm)
+                foreach (City c in nm)
                 {
                     MaterialDesignThemes.Wpf.Card card = new MaterialDesignThemes.Wpf.Card();
                     card.Background = new SolidColorBrush(Color.FromArgb(51, 0, 0, 0));
@@ -309,7 +324,7 @@ namespace _18003144_Task_1_v2
                     nvNoForecast.HorizontalAlignment = HorizontalAlignment.Left;
                     nvNoForecast.FontSize = 22;
                     nvNoForecast.Margin = new Thickness(98, 97, 0, 0);
-                    nvNoForecast.Text = "No forecast for "+date.ToLongDateString();
+                    nvNoForecast.Text = "No forecast for " + date.ToLongDateString();
 
                     grid.Children.Add(lblCity);
                     grid.Children.Add(nvNoForecast);
@@ -318,15 +333,21 @@ namespace _18003144_Task_1_v2
                 }
 
                 dt = dt.AddDays(1);
-                Console.WriteLine("");  
+                Console.WriteLine("");
             }
 
             tbctrlForecasts.SelectedIndex = 0;
         }
 
+        private void BtnEdit_Click(object sender, RoutedEventArgs e)
+        {
+            Button editBtn = (Button)sender;
+            MessageBox.Show(editBtn.Name);
+        }
+
         private bool validInputs()
         {
-            if(lstCities.SelectedIndex < 0)
+            if (lstCities.SelectedIndex < 0)
             {
                 crdError.Visibility = Visibility.Visible;
                 lblError.Text = "Please select at least 1 city from list";
@@ -355,12 +376,12 @@ namespace _18003144_Task_1_v2
             List<UserForecast> matchingForecasts = new List<UserForecast>();
             List<City> cities = getSelectedCities();
             List<int> cityIds = cities.Select(o => o.id).ToList();
-            DateTime startDate = (DateTime) dtpFrom.SelectedDate;
-            DateTime endDate = (DateTime) dtpTo.SelectedDate;
-            
-            foreach(UserForecast forecast in forecasts)
+            DateTime startDate = (DateTime)dtpFrom.SelectedDate;
+            DateTime endDate = (DateTime)dtpTo.SelectedDate;
+
+            foreach (UserForecast forecast in forecasts)
             {
-                if(forecast.ForecastDate.Date.CompareTo(startDate.Date) >= 0 && forecast.ForecastDate.Date.CompareTo(endDate.Date) <= 0 && cityIds.IndexOf(forecast.CityID)>-1)
+                if (forecast.ForecastDate.Date.CompareTo(startDate.Date) >= 0 && forecast.ForecastDate.Date.CompareTo(endDate.Date) <= 0 && cityIds.IndexOf(forecast.CityID) > -1)
                 {
                     matchingForecasts.Add(forecast);
                 }

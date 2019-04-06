@@ -16,7 +16,7 @@
         Background="{DynamicResource MaterialDesignPaper}"
         FontFamily="{DynamicResource MaterialDesignFont}" Loaded="Window_Loaded" Activated="Window_Activated" Closed="Window_Closed">
     <Grid x:Name="grdMain" Margin="0,0,0,0">
-        
+
         <DockPanel x:Name="pnlNavigation" HorizontalAlignment="Left" VerticalAlignment="Top" Height="53" Width="833"  Background="#33000000">
             <Button x:Name="btnHome" Content="Home" HorizontalAlignment="Left" Width="150" Margin="0,0,0,0" Height="Auto" Background="#33000000" Foreground="White"/>
             <Button x:Name="btnViewForecasts" Content="View Forecasts" HorizontalAlignment="Left" Width="150" Margin="0,0,0,0" Height="Auto" Background="#00000000" Foreground="White" Click="BtnViewForecasts_Click"/>
@@ -61,6 +61,7 @@
 
                     <Rectangle Fill="#FFA6A6A6" Margin="80,576,80,0" Height="1" VerticalAlignment="Top"/>
                     <TextBlock x:Name="lblDesc" Text="Weather Description" VerticalAlignment="Top" FontSize="22" Height="Auto" Margin="10,248,10,0" FontStyle="Italic" TextAlignment="Center"/>
+                    <TextBlock x:Name="lblLoading" VerticalAlignment="Top" FontSize="22" Height="Auto" Width="Auto" Margin="627,595,0,0" HorizontalAlignment="Left" Visibility="Hidden"><Run Text="Loading..."/></TextBlock>
                 </Grid>
             </Border>
         </DockPanel>

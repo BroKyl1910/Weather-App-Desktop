@@ -151,12 +151,16 @@ namespace _18003144_Task_1_v2
             string id = clickedCity.Name.Substring(6);
 
             showForecast(id);
-
+  
         }
 
         private void showForecast(string id)
         {
+            lblLoading.Visibility = Visibility.Visible;
+
             APICurrentWeather currentWeather = GetCurrentWeather(id);
+
+            lblLoading.Visibility = Visibility.Hidden;
 
             lblCity.Text = currentWeather.name + ", " + currentWeather.sys.country;
             lblMin.Text = Math.Round(currentWeather.main.temp_min) + " °C";
