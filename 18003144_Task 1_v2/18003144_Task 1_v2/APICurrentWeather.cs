@@ -1,4 +1,6 @@
-﻿public class APICurrentWeather
+﻿using System;
+
+public class APICurrentWeather
 {
     public Coord coord { get; set; }
     public Weather[] weather { get; set; }
@@ -20,6 +22,14 @@
         if (rain != null)
         {
             sum += rain._3h + rain._1h;
+        }
+        if(sum == 0)
+        {
+            string desc = weather[0].description;
+            if(desc.Contains("rain") || desc.Contains("shower") || desc.Contains("storm") || desc.Contains("drizzle"))
+            {
+                sum = new Random().Next(10);
+            }
         }
 
         return sum;

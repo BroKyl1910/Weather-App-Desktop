@@ -51,7 +51,7 @@ namespace _18003144_Task_1_v2
             {
                 cities.Add(CityUtilities.getCityCodeDict()[forecast.CityID]);
             }
-            List<City> distinctCities = cities.Distinct().ToList();
+            List<City> distinctCities = cities.Distinct().OrderBy(o=> o.name).ToList();
             foreach(var city in distinctCities)
             {
                 lstCities.Items.Add(city);
@@ -126,10 +126,10 @@ namespace _18003144_Task_1_v2
                 scrollViewer.Content = stackPanel;
 
                 //List of forecasts which match date, decides which forecast to put on the card
-                List<UserForecast> fc = matchingForecasts.Where(o => o.ForecastDate.Date.Equals(date.Date)).ToList();
+                List<UserForecast> fc = matchingForecasts.Where(o => o.ForecastDate.Date.Equals(date.Date)).OrderBy(f => cityCodeDict[f.CityID].name).ToList();
 
                 //List of cities that dont have forecasts for selected dates
-                List<City> nm = getSelectedCities().Where(o => forecasts.Where(f => f.ForecastDate.Date.Equals(date.Date) && f.CityID == o.id).ToList().Count == 0).ToList();
+                List<City> nm = getSelectedCities().Where(o => forecasts.Where(f => f.ForecastDate.Date.Equals(date.Date) && f.CityID == o.id).ToList().Count == 0).OrderBy(o => o.name).ToList();
                 
                 //Make card for each forecast
                 foreach (UserForecast forecast in fc)
@@ -322,9 +322,6 @@ namespace _18003144_Task_1_v2
             }
 
             tbctrlForecasts.SelectedIndex = 0;
-
-
-
         }
 
         private bool validInputs()
