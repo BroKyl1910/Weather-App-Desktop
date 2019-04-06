@@ -97,6 +97,7 @@ namespace _18003144_Task_1_v2
         private void BtnGetForecasts_Click(object sender, RoutedEventArgs e)
         {
             if (!validInputs()) return;
+
             crdError.Visibility = Visibility.Hidden;
             tbctrlForecasts.Items.Clear();
 
@@ -332,6 +333,20 @@ namespace _18003144_Task_1_v2
             {
                 crdError.Visibility = Visibility.Visible;
                 lblError.Text = "Please select at least 1 city from list";
+                return false;
+            }
+            else if (dtpFrom.SelectedDate == null)
+            {
+                crdError.Visibility = Visibility.Visible;
+                lblError.Text = "Please select begin date";
+                dtpFrom.SelectedDate = DateTime.Now;
+                return false;
+            }
+            else if (dtpTo.SelectedDate == null)
+            {
+                crdError.Visibility = Visibility.Visible;
+                lblError.Text = "Please select end date";
+                dtpTo.SelectedDate = DateTime.Now;
                 return false;
             }
 

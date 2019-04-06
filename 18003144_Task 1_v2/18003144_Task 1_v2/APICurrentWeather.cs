@@ -21,6 +21,7 @@
         {
             sum += rain._3h + rain._1h;
         }
+
         return sum;
     }
 }
