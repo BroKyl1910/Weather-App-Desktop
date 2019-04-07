@@ -30,7 +30,7 @@
                 <Grid Margin="0,0,0,0">
 
                     <TextBlock HorizontalAlignment="Left" VerticalAlignment="Top" FontSize="18" Height="Auto" Width="Auto" Margin="239,50,0,0"><Run Text="City"/></TextBlock>
-                    <TextBox x:Name="txtCity" HorizontalAlignment="Left" Height="36" Margin="438,36,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="203" FontSize="16" TextChanged="TxtCity_TextChanged" IsReadOnly="True"/>
+                    <TextBox x:Name="txtCity" HorizontalAlignment="Left" Height="36" Margin="438,36,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="203" FontSize="16" TextChanged="TxtCity_TextChanged"/>
                     <Rectangle Fill="#FFA6A6A6" Margin="80,156,80,0" Height="1" VerticalAlignment="Top"/>
 
                     <TextBlock HorizontalAlignment="Left" VerticalAlignment="Top" FontSize="18" Height="Auto" Width="Auto" Margin="238,255,0,0"><Run Text="Min"/></TextBlock>

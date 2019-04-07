@@ -90,8 +90,7 @@ namespace _18003144_Task_1_v2
 
         private void LstCities_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
-            lstCities.SelectedItem = cityCodeDict[loadedForecast.CityID];
-            lstCities.SelectedIndex = 0;
+            txtCity.Text = ((City)lstCities.SelectedItem).name + ", " + ((City)lstCities.SelectedItem).country;
         }
 
         private void BtnHome_Click(object sender, RoutedEventArgs e)
@@ -225,8 +224,8 @@ namespace _18003144_Task_1_v2
 
         private void BtnSave_Click(object sender, RoutedEventArgs e)
         {
-            //if (!checkValidInputsSave() || !unique()) return;
-            if (!checkValidInputsSave()) return;
+            if (!checkValidInputsSave() || !unique()) return;
+            //if (!checkValidInputsSave()) return;
 
             crdError.Visibility = Visibility.Hidden;
 
@@ -250,6 +249,9 @@ namespace _18003144_Task_1_v2
             }
             MessageBox.Show("Forecast edited!");
 
+            new ViewForecastsWindow().Show();
+            this.Hide();
+
         }
 
         private bool unique()
@@ -257,7 +259,7 @@ namespace _18003144_Task_1_v2
             List<UserForecast> fc = FileUtilities.getForecastsFromFile();
             DateTime selectedDate = ((DateTime)dtpDate.SelectedDate).Date;
             int selectedCityID = ((City)lstCities.SelectedItem).id;
-            if (fc.Where(f => f.CityID == selectedCityID && f.ForecastDate.Date == selectedDate && f!=loadedForecast).ToList().Count > 0)
+            if (fc.Where(f => f.CityID == selectedCityID && f.ForecastDate.Date == selectedDate.Date && f.ForecastDate.Date != loadedForecast.ForecastDate.Date).ToList().Count > 0)
             {
                 crdError.Visibility = Visibility.Visible;
                 lblError.Text = "Already have a forecast for this city on this date";
@@ -316,12 +318,30 @@ namespace _18003144_Task_1_v2
 
         private void BtnDelete_Click(object sender, RoutedEventArgs e)
         {
+            var forecasts = FileUtilities.getForecastsFromFile();
 
+            
+            int index = forecasts.FindIndex(f => f.CityID == loadedForecast.CityID && f.ForecastDate.Date.Equals(loadedForecast.ForecastDate.Date));
+            forecasts.RemoveAt(index);
+
+            using (StreamWriter file = new StreamWriter("Forecasts.txt", false))
+            {
+                foreach (var fc in forecasts)
+                {
+                    file.WriteLine(fc.GetTextFileFormat());
+                }
+
+
+            }
+            MessageBox.Show("Forecast deleted!");
+
+            new ViewForecastsWindow().Show();
+            this.Hide();
         }
 
         private void DtpDate_SelectedDateChanged(object sender, SelectionChangedEventArgs e)
         {
-            dtpDate.SelectedDate = loadedForecast.ForecastDate;
+            //dtpDate.SelectedDate = loadedForecast.ForecastDate;
         }
     }
 }
