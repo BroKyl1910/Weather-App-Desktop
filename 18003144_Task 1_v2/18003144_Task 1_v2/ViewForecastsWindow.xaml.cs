@@ -39,6 +39,7 @@ namespace _18003144_Task_1_v2
             forecasts = FileUtilities.getForecastsFromFile();
             populateListBox();
 
+            lstCities.SelectedIndex = 0;
             dtpFrom.SelectedDate = DateTime.Now;
             dtpTo.SelectedDate = DateTime.Now;
         }
@@ -296,6 +297,7 @@ namespace _18003144_Task_1_v2
                     stackPanel.Children.Add(card);
                 }
 
+                //Make card for each city with no forecast
                 foreach (City c in nm)
                 {
                     MaterialDesignThemes.Wpf.Card card = new MaterialDesignThemes.Wpf.Card();

@@ -225,17 +225,10 @@ namespace _18003144_Task_1_v2
         private void BtnSave_Click(object sender, RoutedEventArgs e)
         {
             if (!checkValidInputsSave() || !unique()) return;
-            //if (!checkValidInputsSave()) return;
 
             crdError.Visibility = Visibility.Hidden;
 
             var forecasts = FileUtilities.getForecastsFromFile();
-
-            //int oldForecastIndex = forecasts.IndexOf(loadedForecast);
-
-            //forecasts[oldForecastIndex] = new UserForecast(((City)lstCities.SelectedItem).id, (DateTime) dtpDate.SelectedDate, Convert.ToInt16(txtMin.Text), Convert.ToInt16(txtMax.Text), Convert.ToInt16(txtWind.Text), Convert.ToInt16(txtHumidity.Text), Convert.ToInt16(txtPrecip.Text));
-
-
             forecasts[forecasts.FindIndex(f => f.CityID == loadedForecast.CityID && f.ForecastDate.Date.Equals(loadedForecast.ForecastDate.Date))] = new UserForecast(((City)lstCities.SelectedItem).id, (DateTime)dtpDate.SelectedDate, Convert.ToInt16(txtMin.Text), Convert.ToInt16(txtMax.Text), Convert.ToInt16(txtWind.Text), Convert.ToInt16(txtHumidity.Text), Convert.ToInt16(txtPrecip.Text));
 
             using (StreamWriter file = new StreamWriter("Forecasts.txt", false))
@@ -244,8 +237,6 @@ namespace _18003144_Task_1_v2
                 {
                     file.WriteLine(fc.GetTextFileFormat());
                 }
-                
-                
             }
             MessageBox.Show("Forecast edited!");
 
@@ -297,19 +288,6 @@ namespace _18003144_Task_1_v2
             return true;
         }
 
-        private void clearForm()
-        {
-            txtCity.Text = "";
-            lstCities.SelectedIndex = -1;
-            lstCities.Items.Clear();
-            dtpDate.SelectedDate = DateTime.Now;
-            sldMin.Value = 0;
-            sldMax.Value = 0;
-            sldWind.Value = 0;
-            sldHumidity.Value = 0;
-            sldPrecip.Value = 0;
-        }
-
         private void BtnViewForecasts_Click(object sender, RoutedEventArgs e)
         {
             new ViewForecastsWindow().Show();
@@ -320,7 +298,6 @@ namespace _18003144_Task_1_v2
         {
             var forecasts = FileUtilities.getForecastsFromFile();
 
-            
             int index = forecasts.FindIndex(f => f.CityID == loadedForecast.CityID && f.ForecastDate.Date.Equals(loadedForecast.ForecastDate.Date));
             forecasts.RemoveAt(index);
 
@@ -330,8 +307,6 @@ namespace _18003144_Task_1_v2
                 {
                     file.WriteLine(fc.GetTextFileFormat());
                 }
-
-
             }
             MessageBox.Show("Forecast deleted!");
 
@@ -339,9 +314,10 @@ namespace _18003144_Task_1_v2
             this.Hide();
         }
 
-        private void DtpDate_SelectedDateChanged(object sender, SelectionChangedEventArgs e)
+        private void BtnBack_Click(object sender, RoutedEventArgs e)
         {
-            //dtpDate.SelectedDate = loadedForecast.ForecastDate;
+            new ViewForecastsWindow().Show();
+            this.Hide();
         }
     }
 }

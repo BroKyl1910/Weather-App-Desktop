@@ -61,10 +61,11 @@
                     <Slider x:Name="sldPrecip" HorizontalAlignment="Left" Margin="438,525,0,0" VerticalAlignment="Top" Width="175" Maximum="100" mah:ScrollViewerHelper.IsHorizontalScrollWheelEnabled="True" mah:SliderHelper.EnableMouseWheel="MouseHover" mah:SliderHelper.ChangeValueBy="LargeChange" ValueChanged="SldPrecip_ValueChanged"/>
                     <TextBox x:Name="txtPrecip" HorizontalAlignment="Left" Height="auto" Margin="630,517,0,0" TextWrapping="Wrap" Text="0" VerticalAlignment="Top" Width="Auto" FontSize="18px" TextChanged="TxtPrecip_TextChanged"/>
                     <TextBlock HorizontalAlignment="Left" VerticalAlignment="Top" FontSize="18" Height="Auto" Width="Auto" Margin="232,186,0,0"><Run Text="Date"/></TextBlock>
-                    <DatePicker x:Name="dtpDate" HorizontalAlignment="Left" Margin="438,177,0,0" VerticalAlignment="Top" Width="203" FontSize="18" SelectedDateChanged="DtpDate_SelectedDateChanged"/>
+                    <DatePicker x:Name="dtpDate" HorizontalAlignment="Left" Margin="438,177,0,0" VerticalAlignment="Top" Width="203" FontSize="18"/>
                     <Button x:Name="btnSave" Content="Save" HorizontalAlignment="Left" Margin="626,587,0,0" VerticalAlignment="Top" Width="93" Height="43" Background="#33000000" Foreground="White" Click="BtnSave_Click"/>
-                    <Button x:Name="btnAutofill" Content="Autofill" HorizontalAlignment="Left" Margin="487,587,0,0" VerticalAlignment="Top" Width="93" Height="43" Background="#00000000" Foreground="White" Click="BtnAutofill_Click"/>
-                    <Button x:Name="btnDelete" Content="Delete Forecast" HorizontalAlignment="Left" Margin="80,587,0,0" VerticalAlignment="Top" Width="Auto" Height="43" Background="#33000000" Foreground="White" Click="BtnDelete_Click"/>
+                    <Button x:Name="btnAutofill" Content="Autofill" HorizontalAlignment="Left" Margin="533,587,0,0" VerticalAlignment="Top" Width="93" Height="43" Background="#00000000" Foreground="White" Click="BtnAutofill_Click"/>
+                    <Button x:Name="btnDelete" Content="Delete Forecast" HorizontalAlignment="Left" Margin="173,587,0,0" VerticalAlignment="Top" Width="Auto" Height="43" Background="#33000000" Foreground="White" Click="BtnDelete_Click"/>
+                    <Button x:Name="btnBack" Content="Back" HorizontalAlignment="Left" Margin="80,587,0,0" VerticalAlignment="Top" Width="93" Height="43" Background="#00000000" Foreground="White" Click="BtnBack_Click"/>
                 </Grid>
             </Border>
         </DockPanel>
