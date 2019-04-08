@@ -16,7 +16,6 @@ namespace _18003144_Task_1_v2
         public static Dictionary<string, City> CityNameDict;
 
 
-
         /*When called, if dictionary is already made, it returns it, 
         otherwise it makes and returns the required dictionary*/
         public static Dictionary<int, City> getCityCodeDict()
@@ -68,9 +67,10 @@ namespace _18003144_Task_1_v2
 
         }
 
-        public static List<City> SearchCities(string cityName)
+        public static List<City> SearchCities(string query)
         {
-            return CityNameDict.Where(q => q.Key.ToLower().Contains(cityName.ToLower())).Select(q => q.Value).OrderBy(o => o.name).ToList<City>();
+            //Return Cities from dictionary where the key (name) contains the search query
+            return CityNameDict.Where(q => q.Key.ToLower().Contains(query.ToLower())).Select(q => q.Value).OrderBy(o => o.name).ToList();
         }
     }
 }
