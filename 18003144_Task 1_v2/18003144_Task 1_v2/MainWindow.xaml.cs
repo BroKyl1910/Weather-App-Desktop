@@ -36,13 +36,15 @@ namespace _18003144_Task_1_v2
 
         private void Window_Loaded(object sender, RoutedEventArgs e)
         {
-            populateFavouriteCityIds();
-            codeCityDict = CityUtilities.getCityCodeDict();
+            populateFavouriteCityIds(); // Get favourite city IDs from file
+            codeCityDict = CityUtilities.getCityCodeDict(); // Get dictionary of City Codes to City objects
 
             createButtonsForCities();
-
+             
+            // If there is no favourites, show placeholders that tell users to add favourites
             if(stckpnlFavourites.Children.Count > 0)
             {
+                //By default show forecast for first favourite city
                 string firstId = ((Button)stckpnlFavourites.Children[0]).Name.Substring(6);
                 showForecast(firstId);
             }
@@ -54,6 +56,7 @@ namespace _18003144_Task_1_v2
             Console.WriteLine();
         }
 
+        // Placeholders to tell user to add favourites
         private void showPlaceholders()
         {
             lblCity.Text = "Add Favourites";
@@ -69,14 +72,16 @@ namespace _18003144_Task_1_v2
             grdMain.Background = null;
         }
 
+        // Loop through ID list and add buttons to the stackpanel for each city
         private void createButtonsForCities()
         {
             stckpnlFavourites.Children.Clear();
+            //Using the favCityIds list, get objects of each favourite city and order them by name
             List<City> favCities = favCityIds.Select(id => codeCityDict[Convert.ToInt32(id)]).OrderBy(o=> o.name).ToList();
 
+            // Make buttons
             for (int i = 0; i < favCities.Count; i++)
             {
-                //int id = favCities[i].id;
                 Button newButton = new Button();
                 newButton.Content = favCities[i].name;
                 newButton.Margin = new Thickness(10, 0, 0, 0);
@@ -101,6 +106,7 @@ namespace _18003144_Task_1_v2
             new AddFavouritesWindow().Show();
         }
 
+        //Right clicking removes city from favourites
         private void favCityButton_MouseRightButtonUp(object sender, MouseButtonEventArgs e)
         {
             Button clickedCity = (Button)sender;
@@ -112,7 +118,7 @@ namespace _18003144_Task_1_v2
             if (confirmResult == System.Windows.MessageBoxResult.No) return;
 
 
-
+            // Get list of favourite city IDs
             string[] linesInOldFile = System.IO.File.ReadAllLines("Favourites.txt");
             List<string> idsForNewFile = new List<string>();
 
@@ -129,6 +135,7 @@ namespace _18003144_Task_1_v2
                 }
             }
 
+            // Write IDs back as one line, this is done so when the program has logins, each user has their own favourites
             using (System.IO.StreamWriter file = new System.IO.StreamWriter("Favourites.txt", false))
             {
                 string line="";
@@ -144,6 +151,7 @@ namespace _18003144_Task_1_v2
 
         }
 
+        // When left clicked, the forecast for the city is displayed
         private void favCity_Click(object sender, RoutedEventArgs e)
         {
 
@@ -156,11 +164,9 @@ namespace _18003144_Task_1_v2
 
         private void showForecast(string id)
         {
-            lblLoading.Visibility = Visibility.Visible;
 
+            //Using OpenWeatherMap API, get current weather in city with specified ID
             APICurrentWeather currentWeather = GetCurrentWeather(id);
-
-            lblLoading.Visibility = Visibility.Hidden;
 
             lblCity.Text = currentWeather.name + ", " + currentWeather.sys.country;
             lblMin.Text = Math.Round(currentWeather.main.temp_min) + " °C";
@@ -172,6 +178,7 @@ namespace _18003144_Task_1_v2
             lblHumidity.Text = currentWeather.main.humidity + " %";
             lblPrecipitation.Text = currentWeather.GetRain() + " mm in last 3 hours";
 
+            //Set background image based on weather
             string src = "";
             if (cloudy(currentWeather))
             {
@@ -191,12 +198,14 @@ namespace _18003144_Task_1_v2
             this.UpdateLayout();
         }
 
+        //Decides if the weather report says anything about clouds
         private bool cloudy(APICurrentWeather currentWeather)
         {
             string desc = currentWeather.weather[0].description;
             return desc.Contains("cloud") || desc.Contains("rain") || desc.Contains("shower") || desc.Contains("storm") || desc.Contains("drizzle");
         }
 
+        // Read all city IDs from file into list
         private void populateFavouriteCityIds()
         {
             favCityIds = new List<string>();
@@ -213,6 +222,7 @@ namespace _18003144_Task_1_v2
             }
         }
 
+        // Make API call and return APICurrentWeather object containing forecast
         private APICurrentWeather GetCurrentWeather(string id)
         {
             string responseString = string.Empty;

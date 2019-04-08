@@ -29,8 +29,6 @@ namespace _18003144_Task_1_v2
             InitializeComponent();
             WindowStartupLocation = System.Windows.WindowStartupLocation.CenterScreen;
 
-            NameCityDict = new Dictionary<string, City>();
-
         }
 
         private void Window_Closed(object sender, EventArgs e)
@@ -40,10 +38,12 @@ namespace _18003144_Task_1_v2
 
         private void Window_Loaded(object sender, RoutedEventArgs e)
         {
-            chooseBackground();
-            NameCityDict = CityUtilities.getNameCityDict();
+            chooseBackground(); //Randomly select background
+            NameCityDict = CityUtilities.getNameCityDict(); // Get dictionary of City Name to City objects
             txtCity.Focus();
         }
+
+        //Randomly select background
         private void chooseBackground()
         {
             string directoryPath = Directory.GetCurrentDirectory() + "/BackgroundImages/";
@@ -58,6 +58,7 @@ namespace _18003144_Task_1_v2
 
         }
 
+        //Search cities when text is changed
         private void TxtCity_TextChanged(object sender, TextChangedEventArgs e)
         {
             lstCities.Items.Clear();
@@ -72,6 +73,7 @@ namespace _18003144_Task_1_v2
             }
         }
 
+        //Auto fill textbox if city is selected
         private void LstCities_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
             City selectedCity = (City)lstCities.SelectedItem;
@@ -88,6 +90,7 @@ namespace _18003144_Task_1_v2
             this.Hide();
         }
 
+        //Auto fill form with data from API
         private void BtnAutofill_Click(object sender, RoutedEventArgs e)
         {
             if (!checkValidInputsAutofill()) return;
@@ -105,6 +108,7 @@ namespace _18003144_Task_1_v2
 
         }
 
+        //Make API call and return current weather object
         private APICurrentWeather GetCurrentWeather(string id)
         {
 
@@ -124,8 +128,8 @@ namespace _18003144_Task_1_v2
             }
         }
 
+        #region Slider and Textbox handling to make slider and textbox reflect each others values
         //Slider and text box handling
-
         private void SldMin_ValueChanged(object sender, RoutedPropertyChangedEventArgs<double> e)
         {
             txtMin.Text = Math.Round(sldMin.Value) + "";
@@ -210,7 +214,9 @@ namespace _18003144_Task_1_v2
                 sldPrecip.Value = 0;
             }
         }
+        #endregion 
 
+        //If inputs are valid add forecast as new line in text file
         private void BtnSave_Click(object sender, RoutedEventArgs e)
         {
             if (!checkValidInputsSave() || !unique()) return;
@@ -227,11 +233,13 @@ namespace _18003144_Task_1_v2
 
         }
 
+        //Check text file for forecast with same city and date
         private bool unique()
         {
             List<UserForecast> fc = FileUtilities.getForecastsFromFile();
             DateTime selectedDate = ((DateTime)dtpDate.SelectedDate).Date;
             int selectedCityID = ((City)lstCities.SelectedItem).id;
+            //If there are any forecasts with the same city ID and forecast date
             if (fc.Where(f => f.CityID == selectedCityID && f.ForecastDate.Date == selectedDate).ToList().Count > 0)
             {
                 crdError.Visibility = Visibility.Visible;
@@ -241,8 +249,10 @@ namespace _18003144_Task_1_v2
             return true;
         }
 
+        //To save, there must be a city and date, and min < max
         private bool checkValidInputsSave()
         {
+            //Checks city
             if (checkValidInputsAutofill())
             {
                 if (dtpDate.SelectedDate == null)
@@ -265,6 +275,7 @@ namespace _18003144_Task_1_v2
 
         }
 
+        //To autofill, there only needs to be a city selected
         private bool checkValidInputsAutofill()
         {
             if (lstCities.SelectedIndex < 0)
@@ -276,6 +287,7 @@ namespace _18003144_Task_1_v2
             return true;
         }
 
+        //Rest form
         private void clearForm()
         {
             txtCity.Text = "";

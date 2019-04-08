@@ -31,9 +31,6 @@ namespace _18003144_Task_1_v2
             InitializeComponent();
             WindowStartupLocation = System.Windows.WindowStartupLocation.CenterScreen;
 
-            NameCityDict = new Dictionary<string, City>();
-            cityCodeDict = new Dictionary<int, City>();
-
             loadedForecast = forecast;
         }
 
@@ -44,11 +41,12 @@ namespace _18003144_Task_1_v2
 
         private void Window_Loaded(object sender, RoutedEventArgs e)
         {
-            chooseBackground();
-            NameCityDict = CityUtilities.getNameCityDict();
-            cityCodeDict = CityUtilities.getCityCodeDict();
+            chooseBackground(); //Randomly select background
+            NameCityDict = CityUtilities.getNameCityDict(); //Get dictionary of City Names to City Objects
+            cityCodeDict = CityUtilities.getCityCodeDict(); //Get dictionary of City IDs to City Objects
             txtCity.Focus();
 
+            //Pre load fields with values supplied from loaded forecast object
             txtCity.Text = cityCodeDict[loadedForecast.CityID].name + ", " + cityCodeDict[loadedForecast.CityID].country;
             lstCities.SelectedItem = cityCodeDict[loadedForecast.CityID];
             lstCities.SelectedIndex = 0;
@@ -59,6 +57,8 @@ namespace _18003144_Task_1_v2
             sldHumidity.Value = loadedForecast.Humidity;
             sldPrecip.Value = loadedForecast.Precipitation;
         }
+
+        //Randomly select background
         private void chooseBackground()
         {
             string directoryPath = Directory.GetCurrentDirectory() + "/BackgroundImages/";
@@ -73,6 +73,7 @@ namespace _18003144_Task_1_v2
 
         }
 
+        // Search cities when text is changed
         private void TxtCity_TextChanged(object sender, TextChangedEventArgs e)
         {
             lstCities.Items.Clear();
@@ -86,6 +87,7 @@ namespace _18003144_Task_1_v2
             }
         }
 
+        //Auto fill textbox when listbox item selected
         private void LstCities_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
             txtCity.Text = ((City)lstCities.SelectedItem).name + ", " + ((City)lstCities.SelectedItem).country;
@@ -97,6 +99,7 @@ namespace _18003144_Task_1_v2
             this.Hide();
         }
 
+        //Check if inputs are valid and then make API call to fill fields
         private void BtnAutofill_Click(object sender, RoutedEventArgs e)
         {
             if (!checkValidInputsAutofill()) return;
@@ -114,6 +117,7 @@ namespace _18003144_Task_1_v2
 
         }
 
+        // Make API call and return current weather object
         private APICurrentWeather GetCurrentWeather(string id)
         {
 
@@ -133,7 +137,7 @@ namespace _18003144_Task_1_v2
             }
         }
 
-        //Slider and text box handling
+        #region  Slider and text box handling
 
         private void SldMin_ValueChanged(object sender, RoutedPropertyChangedEventArgs<double> e)
         {
@@ -220,15 +224,20 @@ namespace _18003144_Task_1_v2
             }
         }
 
+        #endregion
+
+        //Check if inputs are valid, then overwrite file with new values
         private void BtnSave_Click(object sender, RoutedEventArgs e)
         {
             if (!checkValidInputsSave() || !unique()) return;
 
             crdError.Visibility = Visibility.Hidden;
 
+            //Get forecasts and then replace the original forecast object with the new one made from the values in the fields on form
             var forecasts = FileUtilities.getForecastsFromFile();
             forecasts[forecasts.FindIndex(f => f.CityID == loadedForecast.CityID && f.ForecastDate.Date.Equals(loadedForecast.ForecastDate.Date))] = new UserForecast(((City)lstCities.SelectedItem).id, (DateTime)dtpDate.SelectedDate, Convert.ToInt16(txtMin.Text), Convert.ToInt16(txtMax.Text), Convert.ToInt16(txtWind.Text), Convert.ToInt16(txtHumidity.Text), Convert.ToInt16(txtPrecip.Text));
 
+            //Overwrite original file
             using (StreamWriter file = new StreamWriter("Forecasts.txt", false))
             {
                 foreach (var fc in forecasts)
@@ -243,11 +252,14 @@ namespace _18003144_Task_1_v2
 
         }
 
+        //Check if there is already a forecast for city on selected date
         private bool unique()
         {
             List<UserForecast> fc = FileUtilities.getForecastsFromFile();
             DateTime selectedDate = ((DateTime)dtpDate.SelectedDate).Date;
             int selectedCityID = ((City)lstCities.SelectedItem).id;
+            //if there is a forecast one the same day for the same city which is not from this forecast, original forecast being edited still exists in file so if there is already
+            //a forecast it might be this one
             if (fc.Where(f => f.CityID == selectedCityID && f.ForecastDate.Date == selectedDate.Date && f.ForecastDate.Date != loadedForecast.ForecastDate.Date).ToList().Count > 0)
             {
                 crdError.Visibility = Visibility.Visible;
@@ -257,6 +269,7 @@ namespace _18003144_Task_1_v2
             return true;
         }
 
+        //Check that city, date and min and max are valid
         private bool checkValidInputsSave()
         {
             if (checkValidInputsAutofill())
@@ -281,6 +294,7 @@ namespace _18003144_Task_1_v2
 
         }
 
+        //Check city is selected
         private bool checkValidInputsAutofill()
         {
             if (lstCities.SelectedIndex < 0)
@@ -298,13 +312,17 @@ namespace _18003144_Task_1_v2
             this.Hide();
         }
 
+        //Remove forecast from file
         private void BtnDelete_Click(object sender, RoutedEventArgs e)
         {
+            //Get all forecasts
             var forecasts = FileUtilities.getForecastsFromFile();
 
+            //Remove this forecast from list
             int index = forecasts.FindIndex(f => f.CityID == loadedForecast.CityID && f.ForecastDate.Date.Equals(loadedForecast.ForecastDate.Date));
             forecasts.RemoveAt(index);
 
+            //Rewrite list to file
             using (StreamWriter file = new StreamWriter("Forecasts.txt", false))
             {
                 foreach (var fc in forecasts)

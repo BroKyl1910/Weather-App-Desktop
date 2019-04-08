@@ -33,12 +33,13 @@ namespace _18003144_Task_1_v2
 
         private void Window_Loaded(object sender, RoutedEventArgs e)
         {
-            chooseBackground();
-            NameCityDict = CityUtilities.getNameCityDict();
+            chooseBackground(); // Randomly set background
+            NameCityDict = CityUtilities.getNameCityDict(); // Get dictionary of City Names to City objects
 
             txtCity.Focus();
         }
 
+        //Randomly select an image for the background
         private void chooseBackground()
         {
             string directoryPath = Directory.GetCurrentDirectory() + "/BackgroundImages/";
@@ -53,6 +54,7 @@ namespace _18003144_Task_1_v2
 
         }
 
+        //Search cities when text is changed
         private void TextBox_TextChanged(object sender, TextChangedEventArgs e)
         {
             lstCities.Items.Clear();
@@ -66,8 +68,10 @@ namespace _18003144_Task_1_v2
             }
         }
 
+        //When user clicks on listbox item, the selected city is added to the favourites file
         private void LstCities_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
+            //Cannot add same city twice
             if (!alreadyFavourite(((City)lstCities.SelectedItem).id))
             {
                 string ids = "";
@@ -81,6 +85,9 @@ namespace _18003144_Task_1_v2
                     }
                 }
 
+                //If line is empty, just ID is added, otherwise a , and id is added
+                //eg. Empty file - id
+                //    Not empty - 1234,5678(,id)
                 string newLine = (ids.Length > 0) ? ids + "," + ((City)lstCities.SelectedItem).id : ((City)lstCities.SelectedItem).id + "";
                 using (StreamWriter file = new StreamWriter("Favourites.txt", false))
                 {
@@ -92,6 +99,7 @@ namespace _18003144_Task_1_v2
             this.Close();
         }
 
+        //Check IDs in file and see if the specified ID is already in the file
         private bool alreadyFavourite(int id)
         {
             string ids = "";

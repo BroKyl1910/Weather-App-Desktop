@@ -135,6 +135,31 @@ namespace _18003144_Task_1_v2
                 //Make card for each forecast
                 foreach (UserForecast forecast in fc)
                 {
+
+                    UserForecast maxTempObj;
+                    UserForecast minTempObj;
+                    UserForecast maxWindObj;
+                    UserForecast maxHumidityObj;
+                    UserForecast maxPrecipObj;
+
+                    if (fc.Count > 1)
+                    {
+                        maxTempObj = fc.Where(o => o.MaximumTemp == fc.Max(f => f.MaximumTemp)).ToList()[0];
+                        minTempObj = fc.Where(o => o.MinimumTemp == fc.Min(f => f.MinimumTemp)).ToList()[0];
+                        maxWindObj = fc.Where(o => o.WindSpeed == fc.Max(f => f.WindSpeed)).ToList()[0];
+                        maxHumidityObj = fc.Where(o => o.Humidity == fc.Max(f => f.Humidity)).ToList()[0];
+                        maxPrecipObj = fc.Where(o => o.Precipitation == fc.Max(f => f.Precipitation)).ToList()[0];
+
+                    }
+                    else
+                    {
+                        maxTempObj = fc[0];
+                        minTempObj = fc[0];
+                        maxWindObj = fc[0];
+                        maxHumidityObj = fc[0];
+                        maxPrecipObj = fc[0];
+                    }
+
                     MaterialDesignThemes.Wpf.Card card = new MaterialDesignThemes.Wpf.Card();
                     card.Background = new SolidColorBrush(Color.FromArgb(51, 0, 0, 0));
                     card.Foreground = new SolidColorBrush(Colors.White);
@@ -154,7 +179,6 @@ namespace _18003144_Task_1_v2
                     lblCity.FontSize = 28;
                     lblCity.Margin = new Thickness(10, 10, 0, 0);
                     lblCity.TextAlignment = TextAlignment.Center;
-                    //lblCity.TextDecorations = TextDecorations.Underline;
                     lblCity.Text = cityCodeDict[forecast.CityID].name + ", " + cityCodeDict[forecast.CityID].country;
 
                     //Date nv
@@ -191,6 +215,7 @@ namespace _18003144_Task_1_v2
                     lblMin.Margin = new Thickness(419, 129, 0, 0);
                     lblMin.Text = forecast.MinimumTemp + " °C";
                     lblMin.FontStyle = FontStyles.Italic;
+                    lblMin.Foreground = (forecast.Equals(minTempObj) && fc.Count > 1) ? Brushes.Red : Brushes.White;
 
 
                     //Max value nv
@@ -209,6 +234,8 @@ namespace _18003144_Task_1_v2
                     lblMax.Margin = new Thickness(419, 160, 0, 0);
                     lblMax.Text = forecast.MaximumTemp + " °C";
                     lblMax.FontStyle = FontStyles.Italic;
+                    lblMax.Foreground = (forecast.Equals(maxTempObj) && fc.Count > 1) ? Brushes.Red : Brushes.White;
+
 
                     //Wind nv
                     TextBlock nvWind = new TextBlock();
@@ -226,6 +253,7 @@ namespace _18003144_Task_1_v2
                     lblWind.Margin = new Thickness(419, 191, 0, 0);
                     lblWind.Text = forecast.WindSpeed + " km/h";
                     lblWind.FontStyle = FontStyles.Italic;
+                    lblWind.Foreground = (forecast.Equals(maxWindObj) && fc.Count > 1) ? Brushes.Red : Brushes.White;
 
 
                     //Humidity nv
@@ -244,6 +272,7 @@ namespace _18003144_Task_1_v2
                     lblHumidity.Margin = new Thickness(419, 222, 0, 0);
                     lblHumidity.Text = forecast.Humidity + " %";
                     lblHumidity.FontStyle = FontStyles.Italic;
+                    lblHumidity.Foreground = (forecast.Equals(maxHumidityObj) && fc.Count > 1) ? Brushes.Red : Brushes.White;
 
 
                     //Precipitation nv
@@ -262,6 +291,8 @@ namespace _18003144_Task_1_v2
                     lblPrecipitation.Margin = new Thickness(419, 253, 0, 0);
                     lblPrecipitation.Text = forecast.Precipitation + " %";
                     lblPrecipitation.FontStyle = FontStyles.Italic;
+                    lblPrecipitation.Foreground = (forecast.Equals(maxPrecipObj) && fc.Count > 1) ? Brushes.Red : Brushes.White;
+
 
                     //Edit button
                     Button btnEdit = new Button();
