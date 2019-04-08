@@ -58,17 +58,12 @@ namespace _18003144_Task_1_v2
             lstCities.Items.Clear();
             if (!txtCity.Text.Equals(""))
             {
-                List<City> matchedCities = SearchCities(txtCity.Text);
+                List<City> matchedCities = CityUtilities.SearchCities(txtCity.Text);
                 foreach (var city in matchedCities)
                 {
                     lstCities.Items.Add(city);
                 }
             }
-        }
-
-        private List<City> SearchCities(string cityName)
-        {
-            return NameCityDict.Where(q => q.Key.ToLower().Contains(cityName.ToLower())).Select(q => q.Value).OrderBy(o => o.name).ToList();
         }
 
         private void LstCities_SelectionChanged(object sender, SelectionChangedEventArgs e)

@@ -67,5 +67,10 @@ namespace _18003144_Task_1_v2
             return CityNameDict;
 
         }
+
+        public static List<City> SearchCities(string cityName)
+        {
+            return CityNameDict.Where(q => q.Key.ToLower().Contains(cityName.ToLower())).Select(q => q.Value).OrderBy(o => o.name).ToList<City>();
+        }
     }
 }
