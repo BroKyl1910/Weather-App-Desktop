@@ -27,7 +27,7 @@ namespace _18003144_Task_1_v2
         {
             InitializeComponent();
             WindowStartupLocation = System.Windows.WindowStartupLocation.CenterScreen;
-            NameCityDict = new Dictionary<string, City>();
+
 
         }
 
@@ -55,38 +55,62 @@ namespace _18003144_Task_1_v2
 
         private void TextBox_TextChanged(object sender, TextChangedEventArgs e)
         {
-            List<City> matchedCities = SearchCities(txtCity.Text);
             lstCities.Items.Clear();
-            foreach (var city in matchedCities)
+            if (!txtCity.Text.Equals(""))
             {
-                lstCities.Items.Add(city);
+                List<City> matchedCities = SearchCities(txtCity.Text);
+                foreach (var city in matchedCities)
+                {
+                    lstCities.Items.Add(city);
+                }
             }
         }
 
         private List<City> SearchCities(string cityName)
         {
-            return NameCityDict.Where(q => q.Key.ToLower().Contains(cityName.ToLower())).Select(q => q.Value).ToList<City>();
+            return NameCityDict.Where(q => q.Key.ToLower().Contains(cityName.ToLower())).Select(q => q.Value).OrderBy(o => o.name).ToList();
         }
 
         private void LstCities_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
-            string ids="";
+            if (!alreadyFavourite(((City)lstCities.SelectedItem).id))
+            {
+                string ids = "";
+                using (StreamReader file = new StreamReader("Favourites.txt"))
+                {
+                    string line = file.ReadLine();
+                    while (line != null)
+                    {
+                        ids += line;
+                        line = file.ReadLine();
+                    }
+                }
+
+                string newLine = (ids.Length > 0) ? ids + "," + ((City)lstCities.SelectedItem).id : ((City)lstCities.SelectedItem).id + "";
+                using (StreamWriter file = new StreamWriter("Favourites.txt", false))
+                {
+                    file.Write(newLine);
+                }
+            }
+
+
+            this.Close();
+        }
+
+        private bool alreadyFavourite(int id)
+        {
+            string ids = "";
             using (StreamReader file = new StreamReader("Favourites.txt"))
             {
                 string line = file.ReadLine();
-                while(line != null){
+                while (line != null)
+                {
                     ids += line;
                     line = file.ReadLine();
                 }
             }
 
-            string newLine = (ids.Length > 0)?ids + "," + ((City)lstCities.SelectedItem).id:((City)lstCities.SelectedItem).id+"";
-            using (StreamWriter file = new StreamWriter("Favourites.txt", false))
-            {
-                file.Write(newLine);
-            }
-
-            this.Close();
+            return ids.Split(',').Contains(id+"");
         }
     }
 }

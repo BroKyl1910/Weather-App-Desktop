@@ -6,7 +6,7 @@
         xmlns:local="clr-namespace:_18003144_Task_1_v2"
         xmlns:mah="http://metro.mahapps.com/winfx/xaml/controls"  x:Class="_18003144_Task_1_v2.EditForecastWindow"
         mc:Ignorable="d"
-        Title="EditForecastWindow" Height="835.5" Width="841" 
+        Title="Edit Forecast" Height="857.5" Width="841" 
         TextElement.Foreground="{DynamicResource MaterialDesignBody}"
         TextElement.FontWeight="Regular"
         TextElement.FontSize="13"
@@ -50,9 +50,9 @@
                     <Rectangle Fill="#FFA6A6A6" Margin="80,499,80,0" Height="1" VerticalAlignment="Top"/>
                     <TextBlock HorizontalAlignment="Left" VerticalAlignment="Top" FontSize="18" Height="Auto" Width="Auto" Margin="169,526,0,0"><Run Text="Precipitation"/></TextBlock>
                     <ListBox x:Name="lstCities" HorizontalAlignment="Left" Height="70" Margin="438,74,0,0" VerticalAlignment="Top" Width="203" ScrollViewer.VerticalScrollBarVisibility="Hidden" SelectionChanged="LstCities_SelectionChanged"/>
-                    <Slider x:Name="sldMin" HorizontalAlignment="Left" Margin="438,249,0,0" VerticalAlignment="Top" Width="175" Maximum="100" mah:ScrollViewerHelper.IsHorizontalScrollWheelEnabled="True" mah:SliderHelper.EnableMouseWheel="MouseHover" mah:SliderHelper.ChangeValueBy="LargeChange" ValueChanged="SldMin_ValueChanged"/>
+                    <Slider x:Name="sldMin" HorizontalAlignment="Left" Margin="438,249,0,0" VerticalAlignment="Top" Width="175" Maximum="100" mah:ScrollViewerHelper.IsHorizontalScrollWheelEnabled="True" mah:SliderHelper.EnableMouseWheel="MouseHover" mah:SliderHelper.ChangeValueBy="LargeChange" ValueChanged="SldMin_ValueChanged" Minimum="-50"/>
                     <TextBox x:Name="txtMin" HorizontalAlignment="Left" Height="auto" Margin="630,240,0,0" TextWrapping="Wrap" Text="0" VerticalAlignment="Top" Width="Auto" FontSize="18px" TextChanged="TxtMin_TextChanged"/>
-                    <Slider x:Name="sldMax" HorizontalAlignment="Left" Margin="438,317,0,0" VerticalAlignment="Top" Width="175" Maximum="100" ValueChanged="SldMax_ValueChanged" mah:ScrollViewerHelper.IsHorizontalScrollWheelEnabled="True" mah:SliderHelper.EnableMouseWheel="MouseHover" mah:SliderHelper.ChangeValueBy="LargeChange"/>
+                    <Slider x:Name="sldMax" HorizontalAlignment="Left" Margin="438,317,0,0" VerticalAlignment="Top" Width="175" Maximum="100" ValueChanged="SldMax_ValueChanged" mah:ScrollViewerHelper.IsHorizontalScrollWheelEnabled="True" mah:SliderHelper.EnableMouseWheel="MouseHover" mah:SliderHelper.ChangeValueBy="LargeChange" Minimum="-50"/>
                     <TextBox x:Name="txtMax" HorizontalAlignment="Left" Height="auto" Margin="630,309,0,0" TextWrapping="Wrap" Text="0" VerticalAlignment="Top" Width="Auto" FontSize="18px" TextChanged="TxtMax_TextChanged"/>
                     <Slider x:Name="sldWind" HorizontalAlignment="Left" Margin="438,380,0,0" VerticalAlignment="Top" Width="175" Maximum="100" mah:ScrollViewerHelper.IsHorizontalScrollWheelEnabled="True" mah:SliderHelper.EnableMouseWheel="MouseHover" mah:SliderHelper.ChangeValueBy="LargeChange" ValueChanged="SldWind_ValueChanged" />
                     <TextBox x:Name="txtWind" HorizontalAlignment="Left" Height="auto" Margin="630,372,0,0" TextWrapping="Wrap" Text="0" VerticalAlignment="Top" Width="Auto" FontSize="18px" TextChanged="TxtWind_TextChanged"/>

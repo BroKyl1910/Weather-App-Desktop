@@ -60,24 +60,29 @@ namespace _18003144_Task_1_v2
 
         private void TxtCity_TextChanged(object sender, TextChangedEventArgs e)
         {
-            List<City> matchedCities = SearchCities(txtCity.Text);
             lstCities.Items.Clear();
-            foreach (var city in matchedCities)
+            if (!txtCity.Text.Equals(""))
             {
-                lstCities.Items.Add(city);
+                List<City> matchedCities = SearchCities(txtCity.Text);
+                foreach (var city in matchedCities)
+                {
+                    lstCities.Items.Add(city);
+                }
+
             }
         }
 
         private List<City> SearchCities(string cityName)
         {
-            return NameCityDict.Where(q => q.Key.ToLower().Contains(cityName.ToLower())).Select(q => q.Value).ToList<City>();
+            return NameCityDict.Where(q => q.Key.ToLower().Contains(cityName.ToLower())).Select(q => q.Value).OrderBy(o => o.name).ToList<City>();
         }
 
         private void LstCities_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
             City selectedCity = (City)lstCities.SelectedItem;
-            if (selectedCity != null) {
-                txtCity.Text = selectedCity.name+", "+selectedCity.country;
+            if (selectedCity != null)
+            {
+                txtCity.Text = selectedCity.name + ", " + selectedCity.country;
                 lstCities.SelectedIndex = 0;
             }
         }
@@ -94,7 +99,7 @@ namespace _18003144_Task_1_v2
 
             crdError.Visibility = Visibility.Hidden;
 
-            APICurrentWeather currentWeather = GetCurrentWeather(((City)lstCities.SelectedItem).id+"");
+            APICurrentWeather currentWeather = GetCurrentWeather(((City)lstCities.SelectedItem).id + "");
 
             dtpDate.SelectedDate = DateTime.Now;
             sldMin.Value = currentWeather.main.temp_min;
@@ -230,9 +235,9 @@ namespace _18003144_Task_1_v2
         private bool unique()
         {
             List<UserForecast> fc = FileUtilities.getForecastsFromFile();
-            DateTime selectedDate = ((DateTime) dtpDate.SelectedDate).Date;
+            DateTime selectedDate = ((DateTime)dtpDate.SelectedDate).Date;
             int selectedCityID = ((City)lstCities.SelectedItem).id;
-            if(fc.Where(f => f.CityID == selectedCityID && f.ForecastDate.Date == selectedDate).ToList().Count > 0)
+            if (fc.Where(f => f.CityID == selectedCityID && f.ForecastDate.Date == selectedDate).ToList().Count > 0)
             {
                 crdError.Visibility = Visibility.Visible;
                 lblError.Text = "Already have a forecast for this city on this date";
@@ -251,12 +256,18 @@ namespace _18003144_Task_1_v2
                     lblError.Text = "Please select date";
                     return false;
                 }
+                if (sldMin.Value > sldMax.Value)
+                {
+                    crdError.Visibility = Visibility.Visible;
+                    lblError.Text = "Minimum temperature cannot be higher than maximum temperature!";
+                    return false;
+                }
 
                 return true;
             }
 
             return false;
-            
+
         }
 
         private bool checkValidInputsAutofill()

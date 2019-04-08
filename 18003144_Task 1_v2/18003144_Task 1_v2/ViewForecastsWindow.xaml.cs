@@ -408,5 +408,10 @@ namespace _18003144_Task_1_v2
             }
             return cities;
         }
+
+        private void BtnViewForecasts_Click(object sender, RoutedEventArgs e)
+        {
+
+        }
     }
 }

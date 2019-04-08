@@ -75,17 +75,20 @@ namespace _18003144_Task_1_v2
 
         private void TxtCity_TextChanged(object sender, TextChangedEventArgs e)
         {
-            List<City> matchedCities = SearchCities(txtCity.Text);
             lstCities.Items.Clear();
-            foreach (var city in matchedCities)
+            if (!txtCity.Equals(""))
             {
-                lstCities.Items.Add(city);
+                List<City> matchedCities = SearchCities(txtCity.Text);
+                foreach (var city in matchedCities)
+                {
+                    lstCities.Items.Add(city);
+                }
             }
         }
 
         private List<City> SearchCities(string cityName)
         {
-            return NameCityDict.Where(q => q.Key.ToLower().Contains(cityName.ToLower())).Select(q => q.Value).ToList<City>();
+            return NameCityDict.Where(q => q.Key.ToLower().Contains(cityName.ToLower())).Select(q => q.Value).OrderBy(o=>o.name).ToList<City>();
         }
 
         private void LstCities_SelectionChanged(object sender, SelectionChangedEventArgs e)
@@ -233,7 +236,7 @@ namespace _18003144_Task_1_v2
 
             using (StreamWriter file = new StreamWriter("Forecasts.txt", false))
             {
-                foreach(var fc in forecasts)
+                foreach (var fc in forecasts)
                 {
                     file.WriteLine(fc.GetTextFileFormat());
                 }
@@ -270,6 +273,12 @@ namespace _18003144_Task_1_v2
                     return false;
                 }
 
+                if (sldMin.Value > sldMax.Value)
+                {
+                    crdError.Visibility = Visibility.Visible;
+                    lblError.Text = "Minimum temperature cannot be higher than maximum temperature!";
+                    return false;
+                }
                 return true;
             }
 
