@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace _18003144_Task_1_v2
 {
-    class CityUtilities
+    class CityUtilities //Class to hold methods and properties relating to Cities
     {
         //Dictionaries for rest of program
         public static Dictionary<int, City> CityCodeDict;

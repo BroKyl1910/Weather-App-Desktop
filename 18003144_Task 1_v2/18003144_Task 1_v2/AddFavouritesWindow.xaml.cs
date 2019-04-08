@@ -33,25 +33,11 @@ namespace _18003144_Task_1_v2
 
         private void Window_Loaded(object sender, RoutedEventArgs e)
         {
-            chooseBackground(); // Randomly set background
+            grdMain.Background = FileUtilities.ChooseBackground(); //Randomly select background
+
             NameCityDict = CityUtilities.getNameCityDict(); // Get dictionary of City Names to City objects
 
             txtCity.Focus();
-        }
-
-        //Randomly select an image for the background
-        private void chooseBackground()
-        {
-            string directoryPath = Directory.GetCurrentDirectory() + "/BackgroundImages/";
-            int fileCount = Directory.GetFiles(directoryPath, "*", SearchOption.TopDirectoryOnly).Length;
-            string imageName = Directory.GetFiles(directoryPath, "*", SearchOption.TopDirectoryOnly)[new Random().Next(fileCount)];
-            ImageBrush backgroundBrush = new ImageBrush();
-            Image image = new Image();
-            image.Source = new BitmapImage(new Uri(@imageName));
-            backgroundBrush.ImageSource = image.Source;
-            grdMain.Background = backgroundBrush;
-            backgroundBrush.Opacity = 0.3;
-
         }
 
         //Search cities when text is changed

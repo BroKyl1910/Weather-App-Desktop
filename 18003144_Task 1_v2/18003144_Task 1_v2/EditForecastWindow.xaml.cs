@@ -41,7 +41,7 @@ namespace _18003144_Task_1_v2
 
         private void Window_Loaded(object sender, RoutedEventArgs e)
         {
-            chooseBackground(); //Randomly select background
+            grdMain.Background = FileUtilities.ChooseBackground(); //Randomly select background
             NameCityDict = CityUtilities.getNameCityDict(); //Get dictionary of City Names to City Objects
             cityCodeDict = CityUtilities.getCityCodeDict(); //Get dictionary of City IDs to City Objects
             txtCity.Focus();
@@ -56,21 +56,6 @@ namespace _18003144_Task_1_v2
             sldWind.Value = loadedForecast.WindSpeed;
             sldHumidity.Value = loadedForecast.Humidity;
             sldPrecip.Value = loadedForecast.Precipitation;
-        }
-
-        //Randomly select background
-        private void chooseBackground()
-        {
-            string directoryPath = Directory.GetCurrentDirectory() + "/BackgroundImages/";
-            int fileCount = Directory.GetFiles(directoryPath, "*", SearchOption.TopDirectoryOnly).Length;
-            string imageName = Directory.GetFiles(directoryPath, "*", SearchOption.TopDirectoryOnly)[new Random().Next(fileCount)];
-            ImageBrush backgroundBrush = new ImageBrush();
-            Image image = new Image();
-            image.Source = new BitmapImage(new Uri(@imageName));
-            backgroundBrush.ImageSource = image.Source;
-            grdMain.Background = backgroundBrush;
-            backgroundBrush.Opacity = 0.3;
-
         }
 
         // Search cities when text is changed
@@ -234,7 +219,7 @@ namespace _18003144_Task_1_v2
             crdError.Visibility = Visibility.Hidden;
 
             //Get forecasts and then replace the original forecast object with the new one made from the values in the fields on form
-            var forecasts = FileUtilities.getForecastsFromFile();
+            var forecasts = FileUtilities.GetForecastsFromFile();
             forecasts[forecasts.FindIndex(f => f.CityID == loadedForecast.CityID && f.ForecastDate.Date.Equals(loadedForecast.ForecastDate.Date))] = new UserForecast(((City)lstCities.SelectedItem).id, (DateTime)dtpDate.SelectedDate, Convert.ToInt16(txtMin.Text), Convert.ToInt16(txtMax.Text), Convert.ToInt16(txtWind.Text), Convert.ToInt16(txtHumidity.Text), Convert.ToInt16(txtPrecip.Text));
 
             //Overwrite original file
@@ -255,7 +240,7 @@ namespace _18003144_Task_1_v2
         //Check if there is already a forecast for city on selected date
         private bool unique()
         {
-            List<UserForecast> fc = FileUtilities.getForecastsFromFile();
+            List<UserForecast> fc = FileUtilities.GetForecastsFromFile();
             DateTime selectedDate = ((DateTime)dtpDate.SelectedDate).Date;
             int selectedCityID = ((City)lstCities.SelectedItem).id;
             //if there is a forecast one the same day for the same city which is not from this forecast, original forecast being edited still exists in file so if there is already
@@ -316,7 +301,7 @@ namespace _18003144_Task_1_v2
         private void BtnDelete_Click(object sender, RoutedEventArgs e)
         {
             //Get all forecasts
-            var forecasts = FileUtilities.getForecastsFromFile();
+            var forecasts = FileUtilities.GetForecastsFromFile();
 
             //Remove this forecast from list
             int index = forecasts.FindIndex(f => f.CityID == loadedForecast.CityID && f.ForecastDate.Date.Equals(loadedForecast.ForecastDate.Date));

@@ -1,8 +1,12 @@
-﻿public class CityFile
+﻿//Class to deserialize cities.json
+
+//File, which is a list of cities, is represented by CityFile
+public class CityFile
 {
     public City[] cities { get; set; }
 }
 
+//Each city represented by City object
 public class City
 {
     public int id { get; set; }

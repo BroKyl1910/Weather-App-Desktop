@@ -28,30 +28,32 @@ namespace _18003144_Task_1_v2
             InitializeComponent();
             WindowStartupLocation = System.Windows.WindowStartupLocation.CenterScreen;
 
-            forecasts = new List<UserForecast>();
         }
-
 
         private void Window_Loaded(object sender, RoutedEventArgs e)
         {
-            chooseBackground();
-            codeCityDict = CityUtilities.getCityCodeDict();
-            forecasts = FileUtilities.getForecastsFromFile();
-            populateListBox();
+            grdMain.Background = FileUtilities.ChooseBackground(); //Randomly select background
+            codeCityDict = CityUtilities.getCityCodeDict(); //Get dictionary of City Codes to City Objects
+            forecasts = FileUtilities.GetForecastsFromFile(); //Get forecasts from file
+            populateListBox(); //Populate list box with cities
 
+            //Set defaults
             lstCities.SelectedIndex = 0;
             dtpFrom.SelectedDate = DateTime.Now;
             dtpTo.SelectedDate = DateTime.Now;
         }
 
+        // Populate list box with cities
         private void populateListBox()
         {
             lstCities.Items.Clear();
             List<City> cities = new List<City>();
+            //Get all cities with forecasts, repeats allowed
             foreach (var forecast in forecasts)
             {
                 cities.Add(CityUtilities.getCityCodeDict()[forecast.CityID]);
             }
+            //Get distinct cities to add to listbox, no repeats
             List<City> distinctCities = cities.Distinct().OrderBy(o => o.name).ToList();
             foreach (var city in distinctCities)
             {
@@ -62,20 +64,6 @@ namespace _18003144_Task_1_v2
         private void Window_Closed(object sender, EventArgs e)
         {
             System.Windows.Application.Current.Shutdown();
-        }
-
-        private void chooseBackground()
-        {
-            string directoryPath = Directory.GetCurrentDirectory() + "/BackgroundImages/";
-            int fileCount = Directory.GetFiles(directoryPath, "*", SearchOption.TopDirectoryOnly).Length;
-            string imageName = Directory.GetFiles(directoryPath, "*", SearchOption.TopDirectoryOnly)[new Random().Next(fileCount)];
-            ImageBrush backgroundBrush = new ImageBrush();
-            Image image = new Image();
-            image.Source = new BitmapImage(new Uri(@imageName));
-            backgroundBrush.ImageSource = image.Source;
-            grdMain.Background = backgroundBrush;
-            backgroundBrush.Opacity = 0.3;
-
         }
 
         private void BtnAddForecast_Click(object sender, RoutedEventArgs e)
@@ -90,19 +78,20 @@ namespace _18003144_Task_1_v2
             this.Hide();
         }
 
+        //Assume user wants a single date, and chooses from first, therefore make to = from, but from can be changed
         private void DtpFrom_SelectedDateChanged(object sender, SelectionChangedEventArgs e)
         {
             dtpTo.SelectedDate = dtpFrom.SelectedDate;
         }
 
+        //Get forecasts and display them
+        //Each date has a tab in the tabcontrol and each forecast has a card in each tab
         private void BtnGetForecasts_Click(object sender, RoutedEventArgs e)
         {
             if (!validInputs()) return;
 
             crdError.Visibility = Visibility.Hidden;
             tbctrlForecasts.Items.Clear();
-
-            Dictionary<int, City> cityCodeDict = CityUtilities.getCityCodeDict();
 
             //List of all forecasts with same city and date
             List<UserForecast> matchingForecasts = getMatchingForecasts();
@@ -127,39 +116,29 @@ namespace _18003144_Task_1_v2
                 scrollViewer.Content = stackPanel;
 
                 //List of forecasts which match date, decides which forecast to put on the card
-                List<UserForecast> fc = matchingForecasts.Where(o => o.ForecastDate.Date.Equals(date.Date)).OrderBy(f => cityCodeDict[f.CityID].name).ToList();
+                List<UserForecast> fc = matchingForecasts.Where(o => o.ForecastDate.Date.Equals(date.Date)).OrderBy(f => codeCityDict[f.CityID].name).ToList();
 
                 //List of cities that dont have forecasts for selected dates
                 List<City> nm = getSelectedCities().Where(o => forecasts.Where(f => f.ForecastDate.Date.Equals(date.Date) && f.CityID == o.id).ToList().Count == 0).OrderBy(o => o.name).ToList();
 
-                //Make card for each forecast
+                #region Make card for each forecast
                 foreach (UserForecast forecast in fc)
                 {
-
+                    //Make objects to store the forecasts with the highest/lowest values
                     UserForecast maxTempObj;
                     UserForecast minTempObj;
                     UserForecast maxWindObj;
                     UserForecast maxHumidityObj;
                     UserForecast maxPrecipObj;
 
-                    if (fc.Count > 1)
-                    {
-                        maxTempObj = fc.Where(o => o.MaximumTemp == fc.Max(f => f.MaximumTemp)).ToList()[0];
-                        minTempObj = fc.Where(o => o.MinimumTemp == fc.Min(f => f.MinimumTemp)).ToList()[0];
-                        maxWindObj = fc.Where(o => o.WindSpeed == fc.Max(f => f.WindSpeed)).ToList()[0];
-                        maxHumidityObj = fc.Where(o => o.Humidity == fc.Max(f => f.Humidity)).ToList()[0];
-                        maxPrecipObj = fc.Where(o => o.Precipitation == fc.Max(f => f.Precipitation)).ToList()[0];
+                    //Get extremes
+                    maxTempObj = fc.Where(o => o.MaximumTemp == fc.Max(f => f.MaximumTemp)).ToList()[0];
+                    minTempObj = fc.Where(o => o.MinimumTemp == fc.Min(f => f.MinimumTemp)).ToList()[0];
+                    maxWindObj = fc.Where(o => o.WindSpeed == fc.Max(f => f.WindSpeed)).ToList()[0];
+                    maxHumidityObj = fc.Where(o => o.Humidity == fc.Max(f => f.Humidity)).ToList()[0];
+                    maxPrecipObj = fc.Where(o => o.Precipitation == fc.Max(f => f.Precipitation)).ToList()[0];
 
-                    }
-                    else
-                    {
-                        maxTempObj = fc[0];
-                        minTempObj = fc[0];
-                        maxWindObj = fc[0];
-                        maxHumidityObj = fc[0];
-                        maxPrecipObj = fc[0];
-                    }
-
+                    //Make card
                     MaterialDesignThemes.Wpf.Card card = new MaterialDesignThemes.Wpf.Card();
                     card.Background = new SolidColorBrush(Color.FromArgb(51, 0, 0, 0));
                     card.Foreground = new SolidColorBrush(Colors.White);
@@ -179,7 +158,7 @@ namespace _18003144_Task_1_v2
                     lblCity.FontSize = 28;
                     lblCity.Margin = new Thickness(10, 10, 0, 0);
                     lblCity.TextAlignment = TextAlignment.Center;
-                    lblCity.Text = cityCodeDict[forecast.CityID].name + ", " + cityCodeDict[forecast.CityID].country;
+                    lblCity.Text = codeCityDict[forecast.CityID].name + ", " + codeCityDict[forecast.CityID].country;
 
                     //Date nv
                     TextBlock nvDate = new TextBlock();
@@ -299,14 +278,14 @@ namespace _18003144_Task_1_v2
                     btnEdit.VerticalAlignment = VerticalAlignment.Top;
                     btnEdit.HorizontalAlignment = HorizontalAlignment.Left;
                     btnEdit.FontSize = 22;
-                    btnEdit.Padding = new Thickness(10,10,10,10);
+                    btnEdit.Padding = new Thickness(10, 10, 10, 10);
                     btnEdit.Margin = new Thickness(419, 10, 0, 0);
                     btnEdit.Height = double.NaN;
                     btnEdit.Content = "Edit Forecast";
                     btnEdit.Name = "btnEdit" + forecast.CityID + "_" + forecast.ForecastDate.ToShortDateString().Replace('/', '_');
                     btnEdit.Click += BtnEdit_Click;
                     btnEdit.Foreground = new SolidColorBrush(Colors.White);
-                    btnEdit.Background = new SolidColorBrush(Color.FromArgb(51,0,0,0));
+                    btnEdit.Background = new SolidColorBrush(Color.FromArgb(51, 0, 0, 0));
 
 
 
@@ -327,10 +306,12 @@ namespace _18003144_Task_1_v2
                     grid.Children.Add(btnEdit);
                     stackPanel.Children.Add(card);
                 }
+                #endregion
 
-                //Make card for each city with no forecast
+                #region Make card for each city with no forecast
                 foreach (City c in nm)
                 {
+                    //Make card
                     MaterialDesignThemes.Wpf.Card card = new MaterialDesignThemes.Wpf.Card();
                     card.Background = new SolidColorBrush(Color.FromArgb(51, 0, 0, 0));
                     card.Foreground = new SolidColorBrush(Colors.White);
@@ -359,11 +340,13 @@ namespace _18003144_Task_1_v2
                     nvNoForecast.Margin = new Thickness(98, 97, 0, 0);
                     nvNoForecast.Text = "No forecast for " + date.ToLongDateString();
 
+                    //Add controls to UI
                     grid.Children.Add(lblCity);
                     grid.Children.Add(nvNoForecast);
                     stackPanel.Children.Add(card);
 
                 }
+                #endregion
 
                 dt = dt.AddDays(1);
                 Console.WriteLine("");
@@ -372,9 +355,11 @@ namespace _18003144_Task_1_v2
             tbctrlForecasts.SelectedIndex = 0;
         }
 
+        //Handler for if user wants to edit forecast
         private void BtnEdit_Click(object sender, RoutedEventArgs e)
         {
             Button editBtn = (Button)sender;
+            //Useful bits refers to the city ID and date of the forecast
             string usefulBits = editBtn.Name.Substring(7);
             var usefulBitsArr = usefulBits.Split('_');
             int cityId = Convert.ToInt32(usefulBitsArr[0]);
@@ -385,6 +370,7 @@ namespace _18003144_Task_1_v2
             this.Hide();
         }
 
+        //Must select at least 1 city and a from and to date
         private bool validInputs()
         {
             if (lstCities.SelectedIndex < 0)
@@ -411,6 +397,7 @@ namespace _18003144_Task_1_v2
             return true;
         }
 
+        //Returns all forecasts which match city and start and end date
         private List<UserForecast> getMatchingForecasts()
         {
             List<UserForecast> matchingForecasts = new List<UserForecast>();
@@ -430,6 +417,7 @@ namespace _18003144_Task_1_v2
             return matchingForecasts;
         }
 
+        //Returns selected cities as objects
         private List<City> getSelectedCities()
         {
             List<City> cities = new List<City>();

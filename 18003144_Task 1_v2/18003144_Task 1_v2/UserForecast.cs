@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace _18003144_Task_1_v2
 {
-    public class UserForecast
+    public class UserForecast //Class to represent forecasts created by users
     {
         private int cityID;
         private DateTime forecastDate;
@@ -36,15 +36,10 @@ namespace _18003144_Task_1_v2
             this.precipitation = precipitation;
         }
 
-        public string GetTextFileFormat()
+        public string GetTextFileFormat() // returns string to write to text file to properly represent forecast
         {
             return cityID + "," + forecastDate.Date.ToShortDateString() + "," + minimumTemp + "," + maximumTemp + "," + windSpeed + "," + humidity + "," + precipitation;
         }
 
-        public override string ToString()
-        {
-            City city = CityUtilities.getCityCodeDict()[cityID];
-            return city.name+", "+city.country;
-        }
     }
 }

@@ -4,12 +4,16 @@ using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows.Controls;
+using System.Windows.Media;
+using System.Windows.Media.Imaging;
 
 namespace _18003144_Task_1_v2
 {
-    class FileUtilities
+    class FileUtilities //Class to hold methods used regularly to fetch data from files
     {
-        public static List<UserForecast> getForecastsFromFile()
+        //Method to loop through file and return list of forecast objects
+        public static List<UserForecast> GetForecastsFromFile()
         {
             List<UserForecast> forecasts = new List<UserForecast>();
             using (StreamReader file = new StreamReader("Forecasts.txt"))
@@ -23,6 +27,21 @@ namespace _18003144_Task_1_v2
                 }
             }
             return forecasts;
+        }
+
+        //Randomly select background
+        public static ImageBrush ChooseBackground()
+        {
+            string directoryPath = Directory.GetCurrentDirectory() + "/BackgroundImages/";
+            int fileCount = Directory.GetFiles(directoryPath, "*", SearchOption.TopDirectoryOnly).Length;
+            string imageName = Directory.GetFiles(directoryPath, "*", SearchOption.TopDirectoryOnly)[new Random().Next(fileCount)];
+            ImageBrush backgroundBrush = new ImageBrush();
+            Image image = new Image();
+            image.Source = new BitmapImage(new Uri(@imageName));
+            backgroundBrush.ImageSource = image.Source;
+            backgroundBrush.Opacity = 0.3;
+            return backgroundBrush;
+
         }
     }
 }

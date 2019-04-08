@@ -1,5 +1,6 @@
 ﻿using System;
 
+//Class to deserialize API response JSON
 public class APICurrentWeather
 {
     public Coord coord { get; set; }
@@ -16,6 +17,7 @@ public class APICurrentWeather
     public string name { get; set; }
     public int cod { get; set; }
 
+    //Rain does not deserialize properly, so if the weather description contains rain of any kind, a random amount is generated
     public double GetRain()
     {
         double sum = 0;
