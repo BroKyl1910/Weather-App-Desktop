@@ -158,7 +158,7 @@ namespace _18003144_Task_1_v2
                     lblCity.FontSize = 28;
                     lblCity.Margin = new Thickness(10, 10, 0, 0);
                     lblCity.TextAlignment = TextAlignment.Center;
-                    lblCity.Text = codeCityDict[forecast.CityID].name + ", " + codeCityDict[forecast.CityID].country;
+                    lblCity.Text = codeCityDict[forecast.CityID].ToString();
 
                     //Date nv
                     TextBlock nvDate = new TextBlock();
@@ -330,7 +330,7 @@ namespace _18003144_Task_1_v2
                     lblCity.FontSize = 28;
                     lblCity.Margin = new Thickness(10, 10, 0, 0);
                     lblCity.TextAlignment = TextAlignment.Center;
-                    lblCity.Text = c.name + ", " + c.country;
+                    lblCity.Text = c.ToString();
 
                     //No forecast message
                     TextBlock nvNoForecast = new TextBlock();

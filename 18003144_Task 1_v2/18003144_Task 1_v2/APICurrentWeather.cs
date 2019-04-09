@@ -1,4 +1,7 @@
-﻿using System;
+﻿using Newtonsoft.Json;
+using System;
+using System.IO;
+using System.Net;
 
 //Class to deserialize API response JSON
 public class APICurrentWeather
@@ -17,7 +20,8 @@ public class APICurrentWeather
     public string name { get; set; }
     public int cod { get; set; }
 
-    //Rain does not deserialize properly, so if the weather description contains rain of any kind, a random amount is generated
+    //Rain does not deserialize properly as the property name does not match the json object name, the json object name is illegal in C# 
+    //so if the weather description contains rain of any kind, a random amount is generated
     public double GetRain()
     {
         double sum = 0;
@@ -25,10 +29,10 @@ public class APICurrentWeather
         {
             sum += rain._3h + rain._1h;
         }
-        if(sum == 0)
+        if (sum == 0)
         {
             string desc = weather[0].description;
-            if(desc.Contains("rain") || desc.Contains("shower") || desc.Contains("storm") || desc.Contains("drizzle"))
+            if (desc.Contains("rain") || desc.Contains("shower") || desc.Contains("storm") || desc.Contains("drizzle"))
             {
                 sum = new Random().Next(10);
             }
@@ -36,6 +40,34 @@ public class APICurrentWeather
 
         return sum;
     }
+
+    //____________________________________code attribution____________________________________//
+    //The following method was taken from Microsoft Docs:
+    //Author: Mike Wasson and Rick Anderson
+    //Link: https://docs.microsoft.com/en-us/aspnet/web-api/overview/advanced/calling-a-web-api-from-a-net-client
+
+    //Make API call and return current weather object
+    public static APICurrentWeather GetCurrentWeather(string id)
+    {
+
+        string responseString = string.Empty;
+        Uri uri = new Uri(@"http://api.openweathermap.org/data/2.5/weather?id=" + id + "&units=metric&APPID=1146a3547ac18a07b0cdfe6894520297");
+
+        HttpWebRequest request = (HttpWebRequest)WebRequest.Create(uri);
+        request.AutomaticDecompression = DecompressionMethods.GZip;
+        request.UserAgent = "12345";
+
+        using (HttpWebResponse response = (HttpWebResponse)request.GetResponse())
+        using (Stream stream = response.GetResponseStream())
+        using (StreamReader reader = new StreamReader(stream))
+        {
+            responseString = reader.ReadToEnd();
+            return JsonConvert.DeserializeObject<APICurrentWeather>(responseString);
+        }
+    }
+
+    //___________________________________________end___________________________________________//
+
 }
 
 public class Main

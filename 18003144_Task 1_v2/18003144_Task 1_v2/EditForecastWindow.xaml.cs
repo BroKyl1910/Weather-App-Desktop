@@ -47,7 +47,7 @@ namespace _18003144_Task_1_v2
             txtCity.Focus();
 
             //Pre load fields with values supplied from loaded forecast object
-            txtCity.Text = cityCodeDict[loadedForecast.CityID].name + ", " + cityCodeDict[loadedForecast.CityID].country;
+            txtCity.Text = cityCodeDict[loadedForecast.CityID].ToString();
             lstCities.SelectedItem = cityCodeDict[loadedForecast.CityID];
             lstCities.SelectedIndex = 0;
             dtpDate.SelectedDate = loadedForecast.ForecastDate;
@@ -75,7 +75,7 @@ namespace _18003144_Task_1_v2
         //Auto fill textbox when listbox item selected
         private void LstCities_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
-            txtCity.Text = ((City)lstCities.SelectedItem).name + ", " + ((City)lstCities.SelectedItem).country;
+            if(lstCities.SelectedItem != null) txtCity.Text = ((City)lstCities.SelectedItem).ToString();
         }
 
         private void BtnHome_Click(object sender, RoutedEventArgs e)
@@ -91,7 +91,7 @@ namespace _18003144_Task_1_v2
 
             crdError.Visibility = Visibility.Hidden;
 
-            APICurrentWeather currentWeather = GetCurrentWeather(((City)lstCities.SelectedItem).id + "");
+            APICurrentWeather currentWeather = APICurrentWeather.GetCurrentWeather(((City)lstCities.SelectedItem).id + "");
 
             dtpDate.SelectedDate = DateTime.Now;
             sldMin.Value = currentWeather.main.temp_min;
@@ -100,26 +100,6 @@ namespace _18003144_Task_1_v2
             sldHumidity.Value = currentWeather.main.humidity;
             sldPrecip.Value = currentWeather.GetRain();
 
-        }
-
-        // Make API call and return current weather object
-        private APICurrentWeather GetCurrentWeather(string id)
-        {
-
-            string responseString = string.Empty;
-            Uri uri = new Uri(@"http://api.openweathermap.org/data/2.5/weather?id=" + id + "&units=metric&APPID=1146a3547ac18a07b0cdfe6894520297");
-
-            HttpWebRequest request = (HttpWebRequest)WebRequest.Create(uri);
-            request.AutomaticDecompression = DecompressionMethods.GZip;
-            request.UserAgent = "12345";
-
-            using (HttpWebResponse response = (HttpWebResponse)request.GetResponse())
-            using (Stream stream = response.GetResponseStream())
-            using (StreamReader reader = new StreamReader(stream))
-            {
-                responseString = reader.ReadToEnd();
-                return JsonConvert.DeserializeObject<APICurrentWeather>(responseString);
-            }
         }
 
         #region  Slider and text box handling
@@ -300,6 +280,11 @@ namespace _18003144_Task_1_v2
         //Remove forecast from file
         private void BtnDelete_Click(object sender, RoutedEventArgs e)
         {
+            var confirmResult = MessageBox.Show("Are you sure you want to delete forecast for " + cityCodeDict[loadedForecast.CityID]+ "?",
+                                    "Delete Forecast",
+                                    System.Windows.MessageBoxButton.YesNo);
+            if (confirmResult == System.Windows.MessageBoxResult.No) return;
+
             //Get all forecasts
             var forecasts = FileUtilities.GetForecastsFromFile();
 

@@ -65,7 +65,7 @@ namespace _18003144_Task_1_v2
             City selectedCity = (City)lstCities.SelectedItem;
             if (selectedCity != null)
             {
-                txtCity.Text = selectedCity.name + ", " + selectedCity.country;
+                txtCity.Text = selectedCity.ToString();
                 lstCities.SelectedIndex = 0;
             }
         }
@@ -83,7 +83,7 @@ namespace _18003144_Task_1_v2
 
             crdError.Visibility = Visibility.Hidden;
 
-            APICurrentWeather currentWeather = GetCurrentWeather(((City)lstCities.SelectedItem).id + "");
+            APICurrentWeather currentWeather = APICurrentWeather.GetCurrentWeather(((City)lstCities.SelectedItem).id + "");
 
             dtpDate.SelectedDate = DateTime.Now;
             sldMin.Value = currentWeather.main.temp_min;
@@ -94,25 +94,6 @@ namespace _18003144_Task_1_v2
 
         }
 
-        //Make API call and return current weather object
-        private APICurrentWeather GetCurrentWeather(string id)
-        {
-
-            string responseString = string.Empty;
-            Uri uri = new Uri(@"http://api.openweathermap.org/data/2.5/weather?id=" + id + "&units=metric&APPID=1146a3547ac18a07b0cdfe6894520297");
-
-            HttpWebRequest request = (HttpWebRequest)WebRequest.Create(uri);
-            request.AutomaticDecompression = DecompressionMethods.GZip;
-            request.UserAgent = "12345";
-
-            using (HttpWebResponse response = (HttpWebResponse)request.GetResponse())
-            using (Stream stream = response.GetResponseStream())
-            using (StreamReader reader = new StreamReader(stream))
-            {
-                responseString = reader.ReadToEnd();
-                return JsonConvert.DeserializeObject<APICurrentWeather>(responseString);
-            }
-        }
 
         #region Slider and Textbox handling to make slider and textbox reflect each others values
         //Slider and text box handling

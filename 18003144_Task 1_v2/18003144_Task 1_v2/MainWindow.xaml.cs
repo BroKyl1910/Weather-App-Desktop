@@ -166,7 +166,7 @@ namespace _18003144_Task_1_v2
         {
 
             //Using OpenWeatherMap API, get current weather in city with specified ID
-            APICurrentWeather currentWeather = GetCurrentWeather(id);
+            APICurrentWeather currentWeather = APICurrentWeather.GetCurrentWeather(id);
 
             lblCity.Text = currentWeather.name + ", " + currentWeather.sys.country;
             lblMin.Text = Math.Round(currentWeather.main.temp_min) + " °C";
@@ -219,25 +219,6 @@ namespace _18003144_Task_1_v2
                 {
                     favCityIds.Add(id);
                 }
-            }
-        }
-
-        // Make API call and return APICurrentWeather object containing forecast
-        private APICurrentWeather GetCurrentWeather(string id)
-        {
-            string responseString = string.Empty;
-            Uri uri = new Uri(@"http://api.openweathermap.org/data/2.5/weather?id=" + id + "&units=metric&APPID=1146a3547ac18a07b0cdfe6894520297");
-
-            HttpWebRequest request = (HttpWebRequest)WebRequest.Create(uri);
-            request.AutomaticDecompression = DecompressionMethods.GZip;
-            request.UserAgent = "12345";
-
-            using (HttpWebResponse response = (HttpWebResponse)request.GetResponse())
-            using (Stream stream = response.GetResponseStream())
-            using (StreamReader reader = new StreamReader(stream))
-            {
-                responseString = reader.ReadToEnd();
-                return JsonConvert.DeserializeObject<APICurrentWeather>(responseString);
             }
         }
 

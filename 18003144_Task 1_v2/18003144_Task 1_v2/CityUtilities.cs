@@ -67,10 +67,16 @@ namespace _18003144_Task_1_v2
 
         }
 
+        //____________________________________code attribution____________________________________//
+        //The following method was taken from Stack Overflow:
+        //Author: Reddog
+        //Link: https://stackoverflow.com/questions/7247235/dictionary-search-with-linq
         public static List<City> SearchCities(string query)
         {
             //Return Cities from dictionary where the key (name) contains the search query
             return CityNameDict.Where(q => q.Key.ToLower().Contains(query.ToLower())).Select(q => q.Value).OrderBy(o => o.name).ToList();
         }
+        //___________________________________________end___________________________________________//
+
     }
 }
