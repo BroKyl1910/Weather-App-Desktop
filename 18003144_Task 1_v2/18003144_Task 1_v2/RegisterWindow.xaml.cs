@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -42,7 +43,12 @@ namespace _18003144_Task_1_v2
         {
             if (ValidateForm())
             {
-                MessageBox.Show("Valid");
+                User newUser = new User(txtUsername.Text, Encryption.GetMD5Hash(txtPassword.Password), (UserType)cmbUserType.SelectedIndex);
+                using (StreamWriter sw = new StreamWriter("Users.txt", true))
+                {
+                    sw.WriteLine(newUser.GetTextFileFormat());
+                }
+                MessageBox.Show("User Registered");
             }
         }
 
