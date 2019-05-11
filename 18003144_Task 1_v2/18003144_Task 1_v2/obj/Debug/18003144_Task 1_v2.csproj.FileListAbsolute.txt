@@ -150,3 +150,5 @@ F:\Task 1\18003144_Task 1_v2\18003144_Task 1_v2\obj\Debug\18003144_Task 1_v2.exe
 F:\Task 1\18003144_Task 1_v2\18003144_Task 1_v2\obj\Debug\18003144_Task 1_v2.pdb
 E:\Programs\Task 1\18003144_Task 1_v2\18003144_Task 1_v2\obj\Debug\LoginWindow.g.cs
 E:\Programs\Task 1\18003144_Task 1_v2\18003144_Task 1_v2\obj\Debug\LoginWindow.baml
+E:\Programs\Task 1\18003144_Task 1_v2\18003144_Task 1_v2\obj\Debug\RegisterWindow.g.cs
+E:\Programs\Task 1\18003144_Task 1_v2\18003144_Task 1_v2\obj\Debug\RegisterWindow.baml

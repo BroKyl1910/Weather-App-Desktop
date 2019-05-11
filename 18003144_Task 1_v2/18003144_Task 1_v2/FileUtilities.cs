@@ -43,5 +43,23 @@ namespace _18003144_Task_1_v2
             return backgroundBrush;
 
         }
+
+        //Method to loop through file and return list of User objects
+        public static List<User> GetUsersFromFile()
+        {
+            List<User> users = new List<User>();
+            using (StreamReader sr = new StreamReader("Users.txt"))
+            {
+                string line = sr.ReadLine();
+                while (line != null)
+                {
+                    var lineParts = line.Split(',');
+                    users.Add(new User(lineParts[0], lineParts[1], (UserType)Convert.ToInt16(lineParts[2])));
+                    line = sr.ReadLine();
+                }
+
+            }
+            return users;
+        }
     }
 }

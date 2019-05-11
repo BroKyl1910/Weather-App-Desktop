@@ -1,0 +1,47 @@
+﻿<Window
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:_18003144_Task_1_v2"
+        xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes" x:Class="_18003144_Task_1_v2.RegisterWindow"
+        mc:Ignorable="d"
+        Title="Log In" Height="690.427" Width="841"
+        TextElement.Foreground="{DynamicResource MaterialDesignBody}"
+        TextElement.FontWeight="Regular"
+        TextElement.FontSize="13"
+        TextOptions.TextFormattingMode="Ideal"
+        TextOptions.TextRenderingMode="Auto"
+        Background="{DynamicResource MaterialDesignPaper}"
+        FontFamily="{DynamicResource MaterialDesignFont}" WindowStartupLocation="CenterScreen" Loaded="Window_Loaded" ResizeMode="NoResize">
+
+    <Grid x:Name="grdMain" Margin="0,0,0,0">
+        <TextBlock VerticalAlignment="Top" FontSize="40" Height="Auto" Width="Auto" Margin="33,39,624,0" TextAlignment="Center"><Run Text="Register"/></TextBlock>
+        <DockPanel Margin="16,110,16,28">
+            <Border BorderThickness="1" CornerRadius="5" BorderBrush="#FF6C6C6C">
+                <Grid Margin="0,0,0,0">
+                    <TextBlock HorizontalAlignment="Left" VerticalAlignment="Top" FontSize="18" Height="Auto" Width="Auto" Margin="69,64,0,0"><Run Text="Username"/></TextBlock>
+                    <TextBox x:Name="txtUsername" HorizontalAlignment="Left" Height="36" Margin="397,50,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="337" FontSize="16"/>
+
+                    <TextBlock HorizontalAlignment="Left" VerticalAlignment="Top" FontSize="18" Height="Auto" Width="Auto" Margin="69,155,0,0"><Run Text="Password"/></TextBlock>
+                    <PasswordBox x:Name="txtPassword" HorizontalAlignment="Left" Height="36" Margin="397,141,0,0" VerticalAlignment="Top" Width="337" FontSize="16" ToolTip="Password must be at least 8 characters and contain 1 uppercase character, 1 lowercase character and 1 digit"/>
+
+                    <Button x:Name="btnRegister" Content="Register" HorizontalAlignment="Left" Margin="641,422,0,0" VerticalAlignment="Top" Width="93" Height="43" Background="#33000000" Foreground="White" Click="BtnRegister_Click"/>
+                    <Button x:Name="btnCancel" Content="Cancel" HorizontalAlignment="Left" Margin="543,422,0,0" VerticalAlignment="Top" Width="93" Height="43" Background="#00000000" Foreground="White" Click="BtnCancel_Click"/>
+                    <TextBlock HorizontalAlignment="Left" VerticalAlignment="Top" FontSize="18" Height="Auto" Width="Auto" Margin="69,232,0,0"><Run Text="Confirm Password"/></TextBlock>
+                    <PasswordBox x:Name="txtConfirmPassword" HorizontalAlignment="Left" Height="36" Margin="397,218,0,0" VerticalAlignment="Top" Width="337" FontSize="16"/>
+                    <TextBlock HorizontalAlignment="Left" VerticalAlignment="Top" FontSize="18" Height="Auto" Width="Auto" Margin="69,325,0,0"><Run Text="User Type"/></TextBlock>
+                    <ComboBox x:Name="cmbUserType" HorizontalAlignment="Left" Margin="397,325,0,0" VerticalAlignment="Top" Width="337" Height="36" FontSize="16"/>
+
+                </Grid>
+            </Border>
+        </DockPanel>
+
+        <materialDesign:Card x:Name="crdError" HorizontalAlignment="Left" Margin="330,39,0,0" VerticalAlignment="Top" Height="48" Width="436"  Background="#33000000" Visibility="Hidden">
+            <Grid>
+                <TextBlock Name="lblError" TextAlignment="Center" VerticalAlignment="Center" Text="Error: Please select city from list" TextWrapping="Wrap" Padding="5"></TextBlock>
+            </Grid>
+        </materialDesign:Card>
+
+    </Grid>
+</Window>

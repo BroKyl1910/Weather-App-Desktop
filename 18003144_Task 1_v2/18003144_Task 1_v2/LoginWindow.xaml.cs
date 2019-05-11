@@ -13,6 +13,7 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
 
+
 namespace _18003144_Task_1_v2
 {
     /// <summary>
@@ -37,10 +38,13 @@ namespace _18003144_Task_1_v2
         {
             if(CheckValid(txtUsername.Text, txtPassword.Password))
             {
+                crdError.Visibility = Visibility.Hidden;
                 MessageBox.Show("Valid - UserType = "+loggedInUser.UserType);
-            } else
+            }
+            else
             {
-                MessageBox.Show("Invalid");
+                crdError.Visibility = Visibility.Visible;
+                lblError.Text = "Invalid Username or Password";
             }
         }
 
@@ -51,7 +55,7 @@ namespace _18003144_Task_1_v2
 
             bool valid = false;
             //Read all users from file
-            List<User> users = GetUsersFromFile();
+            List<User> users = FileUtilities.GetUsersFromFile();
             foreach(User user in users)
             {
                 if (user.Username.ToLower().Equals(username.ToLower()) && user.Password.Equals(hash)){
@@ -62,26 +66,10 @@ namespace _18003144_Task_1_v2
             return valid;
         }
 
-        private List<User> GetUsersFromFile()
-        {
-            List<User> users = new List<User>();
-            using (StreamReader sr = new StreamReader("Users.txt"))
-            {
-                string line = sr.ReadLine();
-                while (line != null)
-                {
-                    var lineParts = line.Split(',');
-                    users.Add(new User(lineParts[0], lineParts[1], (UserType)Convert.ToInt16(lineParts[2])));
-                    line = sr.ReadLine();
-                }
-
-            }
-            return users;
-        }
-
         private void BtnRegister_Click(object sender, RoutedEventArgs e)
         {
-
+            new RegisterWindow().Show();
+            this.Hide();
         }
     }
 }

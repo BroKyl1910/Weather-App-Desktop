@@ -14,14 +14,19 @@ public class User
     {
         Username = "";
         Password = "";
-        UserType = UserType.GeneralUser;
+        this.UserType = UserType.GeneralUser;
     }
 
     public User(string username, string password, UserType userType)
     {
         Username = username;
         Password = password;
-        UserType = userType;
+        this.UserType = userType;
+    }
+
+    public string GetTextFileFormat() // returns string to write to text file to properly represent forecast
+    {
+        return Username + "," + Password+ "," + (int) this.UserType;
     }
 
 }
