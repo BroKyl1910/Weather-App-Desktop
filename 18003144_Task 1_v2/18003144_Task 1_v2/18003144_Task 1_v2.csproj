@@ -78,10 +78,12 @@
     <Compile Include="EditForecastWindow.xaml.cs">
       <DependentUpon>EditForecastWindow.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Encryption.cs" />
     <Compile Include="FileUtilities.cs" />
     <Compile Include="LoginWindow.xaml.cs">
       <DependentUpon>LoginWindow.xaml</DependentUpon>
     </Compile>
+    <Compile Include="User.cs" />
     <Compile Include="UserForecast.cs" />
     <Compile Include="ViewForecastsWindow.xaml.cs">
       <DependentUpon>ViewForecastsWindow.xaml</DependentUpon>

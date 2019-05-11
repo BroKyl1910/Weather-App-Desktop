@@ -4,17 +4,17 @@
 winexe
 C#
 .cs
-E:\Programs\Task 1\18003144_Task 1_v2\18003144_Task 1_v2\obj\Debug\
+E:\Programs\Task 1\18003144_Task 1_v2\18003144_Task 1_v2\obj\Release\
 _18003144_Task_1_v2
 none
 false
-DEBUG;TRACE
+TRACE
 E:\Programs\Task 1\18003144_Task 1_v2\18003144_Task 1_v2\App.xaml
 61987272596
 
-171302874332
+15659830470
 202009183186
 AddFavouritesWindow.xaml;CreateForecastWindow.xaml;EditForecastWindow.xaml;LoginWindow.xaml;MainWindow.xaml;ViewForecastsWindow.xaml;
 
-False
+True
 
