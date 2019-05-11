@@ -13,7 +13,7 @@
         TextOptions.TextFormattingMode="Ideal"
         TextOptions.TextRenderingMode="Auto"
         Background="{DynamicResource MaterialDesignPaper}"
-        FontFamily="{DynamicResource MaterialDesignFont}" Loaded="Window_Loaded" Closed="Window_Closed">
+        FontFamily="{DynamicResource MaterialDesignFont}" Loaded="Window_Loaded" Closed="Window_Closed" ResizeMode="NoResize">
 
     <Grid x:Name="grdMain" Margin="0,0,0,0">
         <Grid.Background>

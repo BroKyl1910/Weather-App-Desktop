@@ -14,7 +14,7 @@
         TextOptions.TextFormattingMode="Ideal"
         TextOptions.TextRenderingMode="Auto"
         Background="{DynamicResource MaterialDesignPaper}"
-        FontFamily="{DynamicResource MaterialDesignFont}" Loaded="Window_Loaded" Activated="Window_Activated" Closed="Window_Closed">
+        FontFamily="{DynamicResource MaterialDesignFont}" Loaded="Window_Loaded" Activated="Window_Activated" Closed="Window_Closed" ResizeMode="NoResize">
     <Grid x:Name="grdMain" Margin="0,0,0,0">
 
         <DockPanel x:Name="pnlNavigation" HorizontalAlignment="Left" VerticalAlignment="Top" Height="53" Width="833"  Background="#33000000">

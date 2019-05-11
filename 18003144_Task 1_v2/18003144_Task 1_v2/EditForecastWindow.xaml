@@ -13,7 +13,7 @@
         TextOptions.TextFormattingMode="Ideal"
         TextOptions.TextRenderingMode="Auto"
         Background="{DynamicResource MaterialDesignPaper}"
-        FontFamily="{DynamicResource MaterialDesignFont}" Closed="Window_Closed" Loaded="Window_Loaded">
+        FontFamily="{DynamicResource MaterialDesignFont}" Closed="Window_Closed" Loaded="Window_Loaded" ResizeMode="NoResize">
     <Grid x:Name="grdMain" Margin="0,0,0,0">
         <Grid.Background>
             <!--<ImageBrush ImageSource="G:\C#\18003144_Task 1_v2\18003144_Task 1_v2\bin\Debug\BackgroundImages\cloudy.jpg" Stretch="UniformToFill" Opacity="0.3"/>-->

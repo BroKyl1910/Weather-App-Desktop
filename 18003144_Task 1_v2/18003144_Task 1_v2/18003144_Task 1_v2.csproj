@@ -79,6 +79,9 @@
       <DependentUpon>EditForecastWindow.xaml</DependentUpon>
     </Compile>
     <Compile Include="FileUtilities.cs" />
+    <Compile Include="LoginWindow.xaml.cs">
+      <DependentUpon>LoginWindow.xaml</DependentUpon>
+    </Compile>
     <Compile Include="UserForecast.cs" />
     <Compile Include="ViewForecastsWindow.xaml.cs">
       <DependentUpon>ViewForecastsWindow.xaml</DependentUpon>
@@ -92,6 +95,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="EditForecastWindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="LoginWindow.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
