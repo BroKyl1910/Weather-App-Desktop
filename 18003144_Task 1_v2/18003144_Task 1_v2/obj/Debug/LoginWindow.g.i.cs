@@ -129,9 +129,21 @@ namespace _18003144_Task_1_v2 {
             return;
             case 5:
             this.btnLogin = ((System.Windows.Controls.Button)(target));
+            
+            #line 28 "..\..\LoginWindow.xaml"
+            this.btnLogin.Click += new System.Windows.RoutedEventHandler(this.BtnLogin_Click);
+            
+            #line default
+            #line hidden
             return;
             case 6:
             this.btnRegister = ((System.Windows.Controls.Button)(target));
+            
+            #line 29 "..\..\LoginWindow.xaml"
+            this.btnRegister.Click += new System.Windows.RoutedEventHandler(this.BtnRegister_Click);
+            
+            #line default
+            #line hidden
             return;
             }
             this._contentLoaded = true;
