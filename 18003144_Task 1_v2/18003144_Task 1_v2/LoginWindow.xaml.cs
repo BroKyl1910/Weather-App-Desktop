@@ -32,6 +32,7 @@ namespace _18003144_Task_1_v2
         {
             grdMain.Background = FileUtilities.ChooseBackground(); //Randomly select background
             loggedInUser = new User();
+            txtUsername.Focus();
         }
 
         private void BtnLogin_Click(object sender, RoutedEventArgs e)
@@ -71,6 +72,11 @@ namespace _18003144_Task_1_v2
         {
             new RegisterWindow().Show();
             this.Hide();
+        }
+
+        private void Window_Closed(object sender, EventArgs e)
+        {
+            System.Windows.Application.Current.Shutdown();
         }
     }
 }

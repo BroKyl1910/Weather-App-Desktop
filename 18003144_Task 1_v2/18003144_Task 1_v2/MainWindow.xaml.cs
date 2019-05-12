@@ -212,16 +212,14 @@ namespace _18003144_Task_1_v2
         {
             favCityIds = new List<string>();
 
+            //Gets all users favourites
             string[] lines = System.IO.File.ReadAllLines("Favourites.txt");
 
-            foreach (string line in lines)
-            {
-                var ids = line.Split(',');
-                foreach (var id in ids)
-                {
-                    favCityIds.Add(id);
-                }
-            }
+            //Gets line where the username is equal to the user's username
+            favCityIds = lines.Where(line => line.Split(',')[0].Equals(user.Username)).ToList()[0].Split(',').ToList();
+            //Removes username from line
+            favCityIds.RemoveAt(0);
+
         }
 
         private void Window_Activated(object sender, EventArgs e)

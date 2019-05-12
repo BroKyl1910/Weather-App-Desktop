@@ -31,6 +31,7 @@ namespace _18003144_Task_1_v2
             grdMain.Background = FileUtilities.ChooseBackground(); //Randomly select background
             cmbUserType.Items.Add("General User");
             cmbUserType.Items.Add("Forecaster");
+            txtUsername.Focus();
         }
 
         private void BtnCancel_Click(object sender, RoutedEventArgs e)
@@ -49,6 +50,9 @@ namespace _18003144_Task_1_v2
                     sw.WriteLine(newUser.GetTextFileFormat());
                 }
                 MessageBox.Show("User Registered");
+
+                this.Hide();
+                new MainWindow(newUser).Show();
             }
         }
 
@@ -94,6 +98,11 @@ namespace _18003144_Task_1_v2
         private bool AllFieldsFilled()
         {
             return !(txtUsername.Text.Equals("") || txtPassword.Password.Equals("") || txtConfirmPassword.Password.Equals("") || cmbUserType.SelectedIndex == -1);
+        }
+
+        private void Window_Closed(object sender, EventArgs e)
+        {
+            System.Windows.Application.Current.Shutdown();
         }
     }
 }

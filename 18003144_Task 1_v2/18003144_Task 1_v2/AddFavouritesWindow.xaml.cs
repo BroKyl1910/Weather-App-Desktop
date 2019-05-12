@@ -22,12 +22,13 @@ namespace _18003144_Task_1_v2
     public partial class AddFavouritesWindow : Window
     {
         Dictionary<string, City> NameCityDict;
+        User user;
 
-        public AddFavouritesWindow()
+        public AddFavouritesWindow(User user)
         {
             InitializeComponent();
             WindowStartupLocation = System.Windows.WindowStartupLocation.CenterScreen;
-
+            this.user = user;
 
         }
 
