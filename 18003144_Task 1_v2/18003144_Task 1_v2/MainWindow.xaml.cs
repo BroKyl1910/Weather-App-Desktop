@@ -105,48 +105,45 @@ namespace _18003144_Task_1_v2
 
         private void BtnAdd_Click(object sender, RoutedEventArgs e)
         {
-            new AddFavouritesWindow().Show();
+            new AddFavouritesWindow(user, favCityIds).Show();
         }
 
         //Right clicking removes city from favourites
         private void favCityButton_MouseRightButtonUp(object sender, MouseButtonEventArgs e)
         {
             Button clickedCity = (Button)sender;
-            string id = clickedCity.Name.Substring(6);
+            string clickedId = clickedCity.Name.Substring(6);
 
             var confirmResult = MessageBox.Show("Are you sure you want to remove " + clickedCity.Content + " from your favourites?",
                                      "Remove Favourite",
                                      System.Windows.MessageBoxButton.YesNo);
             if (confirmResult == System.Windows.MessageBoxResult.No) return;
 
+            //Remove city from list
+            favCityIds.Remove(favCityIds.Where(f=> f.Equals(clickedId)).ToList()[0]);
 
-            // Get list of favourite city IDs
-            string[] linesInOldFile = System.IO.File.ReadAllLines("Favourites.txt");
-            List<string> idsForNewFile = new List<string>();
+            //Get current lines in file
+            List<string> lines = File.ReadAllLines("Favourites.txt").ToList();
 
-            //Get list of IDs to write back
-            foreach (string line in linesInOldFile)
+            //Remove line for user
+            lines.Remove(lines.Where(line => line.Split(',')[0].Equals(user.Username)).ToList()[0]);
+
+            //Recreate new line as username,id,id,id...
+            string newLine = user.Username;
+            foreach (var id in favCityIds)
             {
-                var ids = line.Split(',');
-                foreach (var item in ids)
-                {
-                    if (!item.Equals(id))
-                    {
-                        idsForNewFile.Add(item);
-                    }
-                }
+                newLine += "," + id;
             }
 
-            // Write IDs back as one line, this is done so when the program has logins, each user has their own favourites
-            using (System.IO.StreamWriter file = new System.IO.StreamWriter("Favourites.txt", false))
+            lines.Add(newLine);
+
+            //Write new line back to file
+            using (StreamWriter file = new StreamWriter("Favourites.txt", false))
             {
-                string line="";
-                foreach (string _id in idsForNewFile)
+                foreach(var line in lines)
                 {
-                    line+=_id+",";
+                    file.WriteLine(line);
                 }
-                if(line.Length > 0) line = line.Substring(0, line.Length - 1);
-                file.Write(line);
             }
 
             Window_Loaded(null, null);
@@ -213,7 +210,7 @@ namespace _18003144_Task_1_v2
             favCityIds = new List<string>();
 
             //Gets all users favourites
-            string[] lines = System.IO.File.ReadAllLines("Favourites.txt");
+            string[] lines = File.ReadAllLines("Favourites.txt");
 
             //Gets line where the username is equal to the user's username
             favCityIds = lines.Where(line => line.Split(',')[0].Equals(user.Username)).ToList()[0].Split(',').ToList();

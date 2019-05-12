@@ -49,6 +49,10 @@ namespace _18003144_Task_1_v2
                 {
                     sw.WriteLine(newUser.GetTextFileFormat());
                 }
+                using (StreamWriter sw = new StreamWriter("Favourites.txt", true))
+                {
+                    sw.WriteLine(newUser.Username);
+                }
                 MessageBox.Show("User Registered");
 
                 this.Hide();

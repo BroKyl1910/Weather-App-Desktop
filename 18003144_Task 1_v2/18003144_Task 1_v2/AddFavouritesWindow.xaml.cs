@@ -23,13 +23,15 @@ namespace _18003144_Task_1_v2
     {
         Dictionary<string, City> NameCityDict;
         User user;
+        List<string> favCityIds;
 
-        public AddFavouritesWindow(User user)
+
+        public AddFavouritesWindow(User user, List<string> favCityIds)
         {
             InitializeComponent();
             WindowStartupLocation = System.Windows.WindowStartupLocation.CenterScreen;
             this.user = user;
-
+            this.favCityIds = favCityIds;
         }
 
         private void Window_Loaded(object sender, RoutedEventArgs e)
@@ -61,24 +63,31 @@ namespace _18003144_Task_1_v2
             //Cannot add same city twice
             if (!alreadyFavourite(((City)lstCities.SelectedItem).id))
             {
-                string ids = "";
-                using (StreamReader file = new StreamReader("Favourites.txt"))
+                //Add new city to list
+                favCityIds.Add(((City)lstCities.SelectedItem).id + "");
+
+                //Get current lines in file
+                List<string> lines = File.ReadAllLines("Favourites.txt").ToList();
+
+                //Remove line for user
+                lines.Remove(lines.Where(line => line.Split(',')[0].Equals(user.Username)).ToList()[0]);
+
+                //Recreate new line as username,id,id,id...
+                string newLine = user.Username;
+                foreach (var id in favCityIds)
                 {
-                    string line = file.ReadLine();
-                    while (line != null)
-                    {
-                        ids += line;
-                        line = file.ReadLine();
-                    }
+                    newLine += "," + id;
                 }
 
-                //If line is empty, just ID is added, otherwise a , and id is added
-                //eg. Empty file - id
-                //    Not empty - 1234,5678(,id)
-                string newLine = (ids.Length > 0) ? ids + "," + ((City)lstCities.SelectedItem).id : ((City)lstCities.SelectedItem).id + "";
+                lines.Add(newLine);
+
+                //Write new line back to file
                 using (StreamWriter file = new StreamWriter("Favourites.txt", false))
                 {
-                    file.Write(newLine);
+                    foreach (string line in lines)
+                    {
+                        file.WriteLine(line);
+                    }
                 }
             }
 
@@ -89,18 +98,7 @@ namespace _18003144_Task_1_v2
         //Check IDs in file and see if the specified ID is already in the file
         private bool alreadyFavourite(int id)
         {
-            string ids = "";
-            using (StreamReader file = new StreamReader("Favourites.txt"))
-            {
-                string line = file.ReadLine();
-                while (line != null)
-                {
-                    ids += line;
-                    line = file.ReadLine();
-                }
-            }
-
-            return ids.Split(',').Contains(id+"");
+            return favCityIds.Contains(id + "");
         }
     }
 }
