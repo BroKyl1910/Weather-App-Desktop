@@ -314,5 +314,11 @@ namespace _18003144_Task_1_v2
             new ViewForecastsWindow(user).Show();
             this.Hide();
         }
+
+        private void BtnLogout_Click(object sender, RoutedEventArgs e)
+        {
+            this.Hide();
+            new LoginWindow().Show();
+        }
     }
 }

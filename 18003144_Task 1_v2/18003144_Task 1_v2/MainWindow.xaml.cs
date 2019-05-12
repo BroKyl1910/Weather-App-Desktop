@@ -38,6 +38,11 @@ namespace _18003144_Task_1_v2
 
         private void Window_Loaded(object sender, RoutedEventArgs e)
         {
+            if(user.UserType == UserType.GeneralUser)
+            {
+                btnAddForecast.Visibility = Visibility.Hidden;
+            }
+
             populateFavouriteCityIds(); // Get favourite city IDs from file
             codeCityDict = CityUtilities.getCityCodeDict(); // Get dictionary of City Codes to City objects
 
@@ -236,5 +241,10 @@ namespace _18003144_Task_1_v2
             this.Hide();
         }
 
+        private void BtnLogout_Click(object sender, RoutedEventArgs e)
+        {
+            this.Hide();
+            new LoginWindow().Show();
+        }
     }
 }

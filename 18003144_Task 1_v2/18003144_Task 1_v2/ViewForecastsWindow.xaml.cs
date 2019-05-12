@@ -34,6 +34,11 @@ namespace _18003144_Task_1_v2
 
         private void Window_Loaded(object sender, RoutedEventArgs e)
         {
+            if (user.UserType == UserType.GeneralUser)
+            {
+                btnAddForecast.Visibility = Visibility.Hidden;
+            }
+
             grdMain.Background = FileUtilities.ChooseBackground(); //Randomly select background
             codeCityDict = CityUtilities.getCityCodeDict(); //Get dictionary of City Codes to City Objects
             forecasts = FileUtilities.GetForecastsFromFile(); //Get forecasts from file
@@ -274,21 +279,22 @@ namespace _18003144_Task_1_v2
                     lblPrecipitation.FontStyle = FontStyles.Italic;
                     lblPrecipitation.Foreground = (forecast.Equals(maxPrecipObj) && fc.Count > 1) ? Brushes.Red : Brushes.White;
 
-
                     //Edit button
                     Button btnEdit = new Button();
-                    btnEdit.VerticalAlignment = VerticalAlignment.Top;
-                    btnEdit.HorizontalAlignment = HorizontalAlignment.Left;
-                    btnEdit.FontSize = 22;
-                    btnEdit.Padding = new Thickness(10, 10, 10, 10);
-                    btnEdit.Margin = new Thickness(419, 10, 0, 0);
-                    btnEdit.Height = double.NaN;
-                    btnEdit.Content = "Edit Forecast";
-                    btnEdit.Name = "btnEdit" + forecast.CityID + "_" + forecast.ForecastDate.ToShortDateString().Replace('/', '_');
-                    btnEdit.Click += BtnEdit_Click;
-                    btnEdit.Foreground = new SolidColorBrush(Colors.White);
-                    btnEdit.Background = new SolidColorBrush(Color.FromArgb(51, 0, 0, 0));
-
+                    if (user.UserType == UserType.Forecaster)
+                    {
+                        btnEdit.VerticalAlignment = VerticalAlignment.Top;
+                        btnEdit.HorizontalAlignment = HorizontalAlignment.Left;
+                        btnEdit.FontSize = 22;
+                        btnEdit.Padding = new Thickness(10, 10, 10, 10);
+                        btnEdit.Margin = new Thickness(419, 10, 0, 0);
+                        btnEdit.Height = double.NaN;
+                        btnEdit.Content = "Edit Forecast";
+                        btnEdit.Name = "btnEdit" + forecast.CityID + "_" + forecast.ForecastDate.ToShortDateString().Replace('/', '_');
+                        btnEdit.Click += BtnEdit_Click;
+                        btnEdit.Foreground = new SolidColorBrush(Colors.White);
+                        btnEdit.Background = new SolidColorBrush(Color.FromArgb(51, 0, 0, 0));
+                    }
 
 
                     //Adding controls to UI
@@ -305,7 +311,10 @@ namespace _18003144_Task_1_v2
                     grid.Children.Add(nvHumidity);
                     grid.Children.Add(lblPrecipitation);
                     grid.Children.Add(nvPrecipitation);
-                    grid.Children.Add(btnEdit);
+                    if (user.UserType == UserType.Forecaster)
+                    {
+                        grid.Children.Add(btnEdit);
+                    }
                     stackPanel.Children.Add(card);
                 }
                 #endregion
@@ -433,6 +442,12 @@ namespace _18003144_Task_1_v2
         private void BtnViewForecasts_Click(object sender, RoutedEventArgs e)
         {
 
+        }
+
+        private void BtnLogout_Click(object sender, RoutedEventArgs e)
+        {
+            this.Hide();
+            new LoginWindow().Show();
         }
     }
 }

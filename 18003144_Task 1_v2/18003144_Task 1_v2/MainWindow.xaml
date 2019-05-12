@@ -21,6 +21,7 @@
             <Button x:Name="btnHome" Content="Home" HorizontalAlignment="Left" Width="150" Margin="0,0,0,0" Height="Auto" Background="#33000000" Foreground="White"/>
             <Button x:Name="btnViewForecasts" Content="View Forecasts" HorizontalAlignment="Left" Width="150" Margin="0,0,0,0" Height="Auto" Background="#00000000" Foreground="White" Click="BtnViewForecasts_Click"/>
             <Button x:Name="btnAddForecast" Content="Create Forecast" HorizontalAlignment="Left" Width="150" Margin="0,0,0,0" Height="Auto" Background="#00000000" Foreground="White" Click="BtnAddForecast_Click"/>
+            <Button x:Name="btnLogout" Content="Log Out" HorizontalAlignment="Right" Width="150" Margin="0,0,0,0" Height="Auto" Background="#00000000" Foreground="White" Click="BtnLogout_Click"/>
         </DockPanel>
 
         <Button x:Name="btnAdd" Content="+ Add" Margin="29,0,698,673" Height="36" Background="#00FFFFFF" Foreground="White" BorderBrush="#FFAEAEAE" Click="BtnAdd_Click" VerticalAlignment="Bottom"/>

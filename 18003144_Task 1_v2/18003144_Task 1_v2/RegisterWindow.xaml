@@ -26,7 +26,7 @@
                     <TextBlock HorizontalAlignment="Left" VerticalAlignment="Top" FontSize="18" Height="Auto" Width="Auto" Margin="69,155,0,0"><Run Text="Password"/></TextBlock>
                     <PasswordBox x:Name="txtPassword" TabIndex="1" HorizontalAlignment="Left" Height="36" Margin="397,141,0,0" VerticalAlignment="Top" Width="337" FontSize="16" ToolTip="Password must be at least 8 characters and contain 1 uppercase character, 1 lowercase character and 1 digit"/>
 
-                    <Button x:Name="btnRegister" Content="Register" HorizontalAlignment="Left" Margin="641,422,0,0" VerticalAlignment="Top" Width="93" Height="43" Background="#33000000" Foreground="White" Click="BtnRegister_Click"/>
+                    <Button x:Name="btnRegister" Content="Register" HorizontalAlignment="Left" Margin="641,422,0,0" VerticalAlignment="Top" Width="93" Height="43" Background="#33000000" Foreground="White" Click="BtnRegister_Click" IsDefault="True"/>
                     <Button x:Name="btnCancel" Content="Cancel" HorizontalAlignment="Left" Margin="543,422,0,0" VerticalAlignment="Top" Width="93" Height="43" Background="#00000000" Foreground="White" Click="BtnCancel_Click"/>
                     <TextBlock HorizontalAlignment="Left" VerticalAlignment="Top" FontSize="18" Height="Auto" Width="Auto" Margin="69,232,0,0"><Run Text="Confirm Password"/></TextBlock>
                     <PasswordBox x:Name="txtConfirmPassword" TabIndex="2" HorizontalAlignment="Left" Height="36" Margin="397,218,0,0" VerticalAlignment="Top" Width="337" FontSize="16"/>
