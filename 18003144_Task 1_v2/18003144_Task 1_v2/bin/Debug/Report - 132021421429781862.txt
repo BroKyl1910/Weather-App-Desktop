@@ -1,0 +1,45 @@
+Report generated on 2019/05/12 15:42:22
+For: Durban, ZA, Hashimoto, JP, Higashi-asahimachi, JP, Hong Kong, HK, London, GB, Novinki, RU, Port Elizabeth, ZA, Tokyo, JP, Yukon, CA
+Dates: 2019/05/12 15:41:31 - 2019/05/12 15:41:31
+============================================================
+
+2019/05/12 - Durban, ZA
+=========================================
+Min: 22 °C
+Max: 26 °C
+Wind Speed: 8 km/h
+Humidity: 73 %
+Precipitation: 0 %
+=========================================
+
+2019/05/12 - Hashimoto, JP
+=========================================
+No Forecasts
+
+2019/05/12 - Higashi-asahimachi, JP
+=========================================
+No Forecasts
+
+2019/05/12 - Hong Kong, HK
+=========================================
+No Forecasts
+
+2019/05/12 - London, GB
+=========================================
+No Forecasts
+
+2019/05/12 - Novinki, RU
+=========================================
+No Forecasts
+
+2019/05/12 - Port Elizabeth, ZA
+=========================================
+No Forecasts
+
+2019/05/12 - Tokyo, JP
+=========================================
+No Forecasts
+
+2019/05/12 - Yukon, CA
+=========================================
+No Forecasts

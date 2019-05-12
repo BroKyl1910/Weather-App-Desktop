@@ -1,0 +1,36 @@
+Report generated on: 12/05/2019 15:03:00
+For: Cairo, Tokyo, Durban, Cape Town
+Dates: 12/05/2019, 13/05/2019, 14/05/2019
+=========================================
+
+12/05/2019 - Cairo
+==================
+Min - 24
+Max - 28
+Wind Speed - 10
+Humidity - 52
+Precipitation - 25
+
+12/05/2019 - Tokyo
+==================
+Min - 24
+Max - 28
+Wind Speed - 10
+Humidity - 52
+Precipitation - 25
+
+12/05/2019 - Durban
+==================
+Min - 24
+Max - 28
+Wind Speed - 10
+Humidity - 52
+Precipitation - 25
+
+12/05/2019 - Cape Town
+==================
+Min - 24
+Max - 28
+Wind Speed - 10
+Humidity - 52
+Precipitation - 25
