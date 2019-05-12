@@ -26,12 +26,15 @@ namespace _18003144_Task_1_v2
         Dictionary<int, City> cityCodeDict;
         UserForecast loadedForecast;
 
-        public EditForecastWindow(UserForecast forecast)
+        User user;
+
+        public EditForecastWindow(UserForecast forecast, User user)
         {
             InitializeComponent();
             WindowStartupLocation = System.Windows.WindowStartupLocation.CenterScreen;
 
             loadedForecast = forecast;
+            this.user = user;
         }
 
         private void Window_Closed(object sender, EventArgs e)
@@ -80,7 +83,7 @@ namespace _18003144_Task_1_v2
 
         private void BtnHome_Click(object sender, RoutedEventArgs e)
         {
-            new MainWindow().Show();
+            new MainWindow(user).Show();
             this.Hide();
         }
 
@@ -212,7 +215,7 @@ namespace _18003144_Task_1_v2
             }
             MessageBox.Show("Forecast edited!");
 
-            new ViewForecastsWindow().Show();
+            new ViewForecastsWindow(user).Show();
             this.Hide();
 
         }
@@ -273,7 +276,7 @@ namespace _18003144_Task_1_v2
 
         private void BtnViewForecasts_Click(object sender, RoutedEventArgs e)
         {
-            new ViewForecastsWindow().Show();
+            new ViewForecastsWindow(user).Show();
             this.Hide();
         }
 
@@ -302,13 +305,13 @@ namespace _18003144_Task_1_v2
             }
             MessageBox.Show("Forecast deleted!");
 
-            new ViewForecastsWindow().Show();
+            new ViewForecastsWindow(user).Show();
             this.Hide();
         }
 
         private void BtnBack_Click(object sender, RoutedEventArgs e)
         {
-            new ViewForecastsWindow().Show();
+            new ViewForecastsWindow(user).Show();
             this.Hide();
         }
     }

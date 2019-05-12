@@ -23,12 +23,12 @@ namespace _18003144_Task_1_v2
     public partial class CreateForecastWindow : Window
     {
         Dictionary<string, City> NameCityDict;
-
-        public CreateForecastWindow()
+        User user;
+        public CreateForecastWindow(User user)
         {
             InitializeComponent();
             WindowStartupLocation = System.Windows.WindowStartupLocation.CenterScreen;
-
+            this.user = user;
         }
 
         private void Window_Closed(object sender, EventArgs e)
@@ -72,7 +72,7 @@ namespace _18003144_Task_1_v2
 
         private void BtnHome_Click(object sender, RoutedEventArgs e)
         {
-            new MainWindow().Show();
+            new MainWindow(user).Show();
             this.Hide();
         }
 
@@ -270,7 +270,7 @@ namespace _18003144_Task_1_v2
 
         private void BtnViewForecasts_Click(object sender, RoutedEventArgs e)
         {
-            new ViewForecastsWindow().Show();
+            new ViewForecastsWindow(user).Show();
             this.Hide();
         }
     }

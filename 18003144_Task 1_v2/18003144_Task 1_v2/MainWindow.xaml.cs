@@ -23,11 +23,13 @@ namespace _18003144_Task_1_v2
         List<string> favCityIds;
         private Dictionary<int, City> codeCityDict;
 
-        public MainWindow()
+        User user;
+
+        public MainWindow(User user)
         {
             InitializeComponent();
             WindowStartupLocation = System.Windows.WindowStartupLocation.CenterScreen;
-
+            this.user = user;
         }
         private void Window_Closed(object sender, EventArgs e)
         {
@@ -229,13 +231,13 @@ namespace _18003144_Task_1_v2
 
         private void BtnViewForecasts_Click(object sender, RoutedEventArgs e)
         {
-            new ViewForecastsWindow().Show();
+            new ViewForecastsWindow(user).Show();
             this.Hide();
         }
 
         private void BtnAddForecast_Click(object sender, RoutedEventArgs e)
         {
-            new CreateForecastWindow().Show();
+            new CreateForecastWindow(user).Show();
             this.Hide();
         }
 

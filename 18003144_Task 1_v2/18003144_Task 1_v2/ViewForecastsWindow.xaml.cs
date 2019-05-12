@@ -23,11 +23,13 @@ namespace _18003144_Task_1_v2
         Dictionary<int, City> codeCityDict;
         List<UserForecast> forecasts;
 
-        public ViewForecastsWindow()
+        User user;
+
+        public ViewForecastsWindow(User user)
         {
             InitializeComponent();
             WindowStartupLocation = System.Windows.WindowStartupLocation.CenterScreen;
-
+            this.user = user;
         }
 
         private void Window_Loaded(object sender, RoutedEventArgs e)
@@ -68,13 +70,13 @@ namespace _18003144_Task_1_v2
 
         private void BtnAddForecast_Click(object sender, RoutedEventArgs e)
         {
-            new CreateForecastWindow().Show();
+            new CreateForecastWindow(user).Show();
             this.Hide();
         }
 
         private void BtnHome_Click(object sender, RoutedEventArgs e)
         {
-            new MainWindow().Show();
+            new MainWindow(user).Show();
             this.Hide();
         }
 
@@ -366,7 +368,7 @@ namespace _18003144_Task_1_v2
             DateTime date = new DateTime(Convert.ToInt16(usefulBitsArr[1]), Convert.ToInt16(usefulBitsArr[2]), Convert.ToInt16(usefulBitsArr[3]));
             UserForecast clickedForecast = forecasts.Where(o => o.CityID == cityId && o.ForecastDate.Date.Equals(date.Date)).ToList()[0];
 
-            new EditForecastWindow(clickedForecast).Show();
+            new EditForecastWindow(clickedForecast, user).Show();
             this.Hide();
         }
 

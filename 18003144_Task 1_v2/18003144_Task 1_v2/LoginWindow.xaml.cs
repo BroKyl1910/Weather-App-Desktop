@@ -39,7 +39,8 @@ namespace _18003144_Task_1_v2
             if(CheckValid(txtUsername.Text, txtPassword.Password))
             {
                 crdError.Visibility = Visibility.Hidden;
-                MessageBox.Show("Valid - UserType = "+loggedInUser.UserType);
+                this.Hide();
+                new MainWindow(loggedInUser).Show();
             }
             else
             {
