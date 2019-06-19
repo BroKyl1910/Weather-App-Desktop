@@ -5,23 +5,26 @@ using System.Security.Cryptography;
 using System.Text;
 using System.Threading.Tasks;
 
-class Encryption
+namespace _18003144_Task_1_v2
 {
-
-    public static string GetMD5Hash(string input)
+    class Encryption
     {
-        //Create MD5 Object
-        MD5 md5Hash = MD5.Create();
-        //Create byte[] of hashed input
-        byte[] data = md5Hash.ComputeHash(Encoding.UTF8.GetBytes(input));
-        string result = "";
-        foreach (var _byte in data)
-        {
-            //Convert each byte to Hex String
-            result += _byte.ToString("x2");
-        }
-        Console.WriteLine("Result Formatted: " + result);
-        return result;
-    }
 
+        public static string GetMD5Hash(string input)
+        {
+            //Create MD5 Object
+            MD5 md5Hash = MD5.Create();
+            //Create byte[] of hashed input
+            byte[] data = md5Hash.ComputeHash(Encoding.UTF8.GetBytes(input));
+            string result = "";
+            foreach (var _byte in data)
+            {
+                //Convert each byte to Hex String
+                result += _byte.ToString("x2");
+            }
+            return result;
+        }
+
+    }
 }
+

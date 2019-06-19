@@ -1,0 +1,55 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="WeatherForecastAppModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+  <EntityType Name="DB_Favourite">
+    <Key>
+      <PropertyRef Name="FavouriteID" />
+    </Key>
+    <Property Name="FavouriteID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Username" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="CityID" Type="Int32" Nullable="false" />
+    <NavigationProperty Name="DB_User" Relationship="Self.FK__DB_Favour__Usern__398D8EEE" FromRole="DB_Favourite" ToRole="DB_User" />
+  </EntityType>
+  <EntityType Name="DB_Forecast">
+    <Key>
+      <PropertyRef Name="ForecastID" />
+    </Key>
+    <Property Name="ForecastID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="CityID" Type="Int32" Nullable="false" />
+    <Property Name="ForecastDate" Type="DateTime" Nullable="false" Precision="0" />
+    <Property Name="MinTemp" Type="Int32" Nullable="false" />
+    <Property Name="MaxTemp" Type="Int32" Nullable="false" />
+    <Property Name="WindSpeed" Type="Int32" Nullable="false" />
+    <Property Name="Humidity" Type="Int32" Nullable="false" />
+    <Property Name="Precipitation" Type="Int32" Nullable="false" />
+  </EntityType>
+  <EntityType Name="DB_User">
+    <Key>
+      <PropertyRef Name="Username" />
+    </Key>
+    <Property Name="Username" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="Password" Type="String" MaxLength="100" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="UserType" Type="Int32" Nullable="false" />
+    <NavigationProperty Name="DB_Favourite" Relationship="Self.FK__DB_Favour__Usern__398D8EEE" FromRole="DB_User" ToRole="DB_Favourite" />
+  </EntityType>
+  <Association Name="FK__DB_Favour__Usern__398D8EEE">
+    <End Role="DB_User" Type="Self.DB_User" Multiplicity="0..1" />
+    <End Role="DB_Favourite" Type="Self.DB_Favourite" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="DB_User">
+        <PropertyRef Name="Username" />
+      </Principal>
+      <Dependent Role="DB_Favourite">
+        <PropertyRef Name="Username" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityContainer Name="WeatherForecastAppEntities" annotation:LazyLoadingEnabled="true">
+    <EntitySet Name="DB_Favourite" EntityType="Self.DB_Favourite" />
+    <EntitySet Name="DB_Forecast" EntityType="Self.DB_Forecast" />
+    <EntitySet Name="DB_User" EntityType="Self.DB_User" />
+    <AssociationSet Name="FK__DB_Favour__Usern__398D8EEE" Association="Self.FK__DB_Favour__Usern__398D8EEE">
+      <End Role="DB_User" EntitySet="DB_User" />
+      <End Role="DB_Favourite" EntitySet="DB_Favourite" />
+    </AssociationSet>
+  </EntityContainer>
+</Schema>

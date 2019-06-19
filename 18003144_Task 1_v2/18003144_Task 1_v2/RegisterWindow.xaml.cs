@@ -28,7 +28,7 @@ namespace _18003144_Task_1_v2
 
         private void Window_Loaded(object sender, RoutedEventArgs e)
         {
-            grdMain.Background = FileUtilities.ChooseBackground(); //Randomly select background
+            grdMain.Background = DataUtilities.ChooseBackground(); //Randomly select background
             cmbUserType.Items.Add("General User");
             cmbUserType.Items.Add("Forecaster");
             txtUsername.Focus();
@@ -45,14 +45,7 @@ namespace _18003144_Task_1_v2
             if (ValidateForm())
             {
                 User newUser = new User(txtUsername.Text, Encryption.GetMD5Hash(txtPassword.Password), (UserType)cmbUserType.SelectedIndex);
-                using (StreamWriter sw = new StreamWriter("Users.txt", true))
-                {
-                    sw.WriteLine(newUser.GetTextFileFormat());
-                }
-                using (StreamWriter sw = new StreamWriter("Favourites.txt", true))
-                {
-                    sw.WriteLine(newUser.Username);
-                }
+                DataUtilities.InsertUser(newUser);
                 MessageBox.Show("User Registered");
 
                 this.Hide();
@@ -71,7 +64,7 @@ namespace _18003144_Task_1_v2
             }
 
             //Check username isn't already used
-            if(FileUtilities.GetUsersFromFile().Any(u => u.Username.ToLower().Equals(txtUsername.Text.ToLower())))
+            if(DataUtilities.GetUsersFromDB().Any(u => u.Username.ToLower().Equals(txtUsername.Text.ToLower())))
             {
                 crdError.Visibility = Visibility.Visible;
                 lblError.Text = "Username already taken";

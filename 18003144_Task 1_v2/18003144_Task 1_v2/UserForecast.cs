@@ -8,6 +8,7 @@ namespace _18003144_Task_1_v2
 {
     public class UserForecast //Class to represent forecasts created by users
     {
+        private int forecastID;
         private int cityID;
         private DateTime forecastDate;
         private int minimumTemp;
@@ -17,6 +18,7 @@ namespace _18003144_Task_1_v2
         private int precipitation;
 
 
+        public int ForecastID { get => forecastID; set => forecastID = value; }
         public int CityID { get => cityID; set => cityID = value; }
         public DateTime ForecastDate { get => forecastDate; set => forecastDate = value; }
         public int MinimumTemp { get => minimumTemp; set => minimumTemp = value; }
@@ -25,8 +27,9 @@ namespace _18003144_Task_1_v2
         public int Humidity { get => humidity; set => humidity = value; }
         public int Precipitation { get => precipitation; set => precipitation = value; }
 
-        public UserForecast(int cityID, DateTime forecastDate, int minimumTemp, int maximumTemp, int windSpeed, int humidity, int precipitation)
+        public UserForecast(int ForecastID, int cityID, DateTime forecastDate, int minimumTemp, int maximumTemp, int windSpeed, int humidity, int precipitation)
         {
+            this.ForecastID = ForecastID;
             this.cityID = cityID;
             this.forecastDate = forecastDate;
             this.minimumTemp = minimumTemp;

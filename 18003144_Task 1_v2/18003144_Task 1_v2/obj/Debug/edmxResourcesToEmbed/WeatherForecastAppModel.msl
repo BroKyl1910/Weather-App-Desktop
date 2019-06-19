@@ -1,0 +1,37 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+  <EntityContainerMapping StorageEntityContainer="WeatherForecastAppModelStoreContainer" CdmEntityContainer="WeatherForecastAppEntities">
+    <EntitySetMapping Name="DB_Favourite">
+      <EntityTypeMapping TypeName="WeatherForecastAppModel.DB_Favourite">
+        <MappingFragment StoreEntitySet="DB_Favourite">
+          <ScalarProperty Name="FavouriteID" ColumnName="FavouriteID" />
+          <ScalarProperty Name="Username" ColumnName="Username" />
+          <ScalarProperty Name="CityID" ColumnName="CityID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="DB_Forecast">
+      <EntityTypeMapping TypeName="WeatherForecastAppModel.DB_Forecast">
+        <MappingFragment StoreEntitySet="DB_Forecast">
+          <ScalarProperty Name="ForecastID" ColumnName="ForecastID" />
+          <ScalarProperty Name="CityID" ColumnName="CityID" />
+          <ScalarProperty Name="ForecastDate" ColumnName="ForecastDate" />
+          <ScalarProperty Name="MinTemp" ColumnName="MinTemp" />
+          <ScalarProperty Name="MaxTemp" ColumnName="MaxTemp" />
+          <ScalarProperty Name="WindSpeed" ColumnName="WindSpeed" />
+          <ScalarProperty Name="Humidity" ColumnName="Humidity" />
+          <ScalarProperty Name="Precipitation" ColumnName="Precipitation" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="DB_User">
+      <EntityTypeMapping TypeName="WeatherForecastAppModel.DB_User">
+        <MappingFragment StoreEntitySet="DB_User">
+          <ScalarProperty Name="Username" ColumnName="Username" />
+          <ScalarProperty Name="Password" ColumnName="Password" />
+          <ScalarProperty Name="UserType" ColumnName="UserType" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+  </EntityContainerMapping>
+</Mapping>

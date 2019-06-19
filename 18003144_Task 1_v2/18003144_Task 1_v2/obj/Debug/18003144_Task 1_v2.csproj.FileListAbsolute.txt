@@ -126,7 +126,6 @@ F:\Task 1\18003144_Task 1_v2\18003144_Task 1_v2\bin\Debug\MaterialDesignThemes.W
 F:\Task 1\18003144_Task 1_v2\18003144_Task 1_v2\bin\Debug\MaterialDesignThemes.Wpf.xml
 F:\Task 1\18003144_Task 1_v2\18003144_Task 1_v2\bin\Debug\Newtonsoft.Json.pdb
 F:\Task 1\18003144_Task 1_v2\18003144_Task 1_v2\bin\Debug\Newtonsoft.Json.xml
-F:\Task 1\18003144_Task 1_v2\18003144_Task 1_v2\obj\Debug\18003144_Task 1_v2.csprojAssemblyReference.cache
 F:\Task 1\18003144_Task 1_v2\18003144_Task 1_v2\obj\Debug\AddFavouritesWindow.g.cs
 F:\Task 1\18003144_Task 1_v2\18003144_Task 1_v2\obj\Debug\CreateForecastWindow.g.cs
 F:\Task 1\18003144_Task 1_v2\18003144_Task 1_v2\obj\Debug\EditForecastWindow.g.cs
@@ -152,3 +151,105 @@ E:\Programs\Task 1\18003144_Task 1_v2\18003144_Task 1_v2\obj\Debug\LoginWindow.g
 E:\Programs\Task 1\18003144_Task 1_v2\18003144_Task 1_v2\obj\Debug\LoginWindow.baml
 E:\Programs\Task 1\18003144_Task 1_v2\18003144_Task 1_v2\obj\Debug\RegisterWindow.g.cs
 E:\Programs\Task 1\18003144_Task 1_v2\18003144_Task 1_v2\obj\Debug\RegisterWindow.baml
+F:\Task 1\18003144_Task 1_v2\18003144_Task 1_v2\obj\Debug\LoginWindow.g.cs
+F:\Task 1\18003144_Task 1_v2\18003144_Task 1_v2\obj\Debug\RegisterWindow.g.cs
+F:\Task 1\18003144_Task 1_v2\18003144_Task 1_v2\obj\Debug\LoginWindow.baml
+F:\Task 1\18003144_Task 1_v2\18003144_Task 1_v2\obj\Debug\RegisterWindow.baml
+F:\Task 1\18003144_Task 1_v2\18003144_Task 1_v2\bin\Debug\18003144_Task 1_v2.exe.CodeAnalysisLog.xml
+F:\Task 1\18003144_Task 1_v2\18003144_Task 1_v2\bin\Debug\18003144_Task 1_v2.exe.lastcodeanalysissucceeded
+E:\Programs\Task 3\Task 1\18003144_Task 1_v2\18003144_Task 1_v2\obj\Debug\18003144_Task 1_v2.csprojAssemblyReference.cache
+E:\Programs\Task 3\Task 1\18003144_Task 1_v2\18003144_Task 1_v2\obj\Debug\AddFavouritesWindow.g.cs
+E:\Programs\Task 3\Task 1\18003144_Task 1_v2\18003144_Task 1_v2\obj\Debug\CreateForecastWindow.g.cs
+E:\Programs\Task 3\Task 1\18003144_Task 1_v2\18003144_Task 1_v2\obj\Debug\EditForecastWindow.g.cs
+E:\Programs\Task 3\Task 1\18003144_Task 1_v2\18003144_Task 1_v2\obj\Debug\LoginWindow.g.cs
+E:\Programs\Task 3\Task 1\18003144_Task 1_v2\18003144_Task 1_v2\obj\Debug\MainWindow.g.cs
+E:\Programs\Task 3\Task 1\18003144_Task 1_v2\18003144_Task 1_v2\obj\Debug\RegisterWindow.g.cs
+E:\Programs\Task 3\Task 1\18003144_Task 1_v2\18003144_Task 1_v2\obj\Debug\ViewForecastsWindow.g.cs
+E:\Programs\Task 3\Task 1\18003144_Task 1_v2\18003144_Task 1_v2\obj\Debug\App.g.cs
+E:\Programs\Task 3\Task 1\18003144_Task 1_v2\18003144_Task 1_v2\obj\Debug\18003144_Task 1_v2_Content.g.cs
+E:\Programs\Task 3\Task 1\18003144_Task 1_v2\18003144_Task 1_v2\obj\Debug\18003144_Task 1_v2_MarkupCompile.cache
+E:\Programs\Task 3\Task 1\18003144_Task 1_v2\18003144_Task 1_v2\obj\Debug\18003144_Task 1_v2_MarkupCompile.lref
+E:\Programs\Task 3\Task 1\18003144_Task 1_v2\18003144_Task 1_v2\obj\Debug\18003144_Task 1_v2.exe
+E:\Programs\Task 3\Task 1\18003144_Task 1_v2\18003144_Task 1_v2\obj\Debug\18003144_Task 1_v2.pdb
+E:\Programs\Task 3\Task 1\18003144_Task 1_v2\18003144_Task 1_v2\bin\Debug\18003144_Task 1_v2.exe.config
+E:\Programs\Task 3\Task 1\18003144_Task 1_v2\18003144_Task 1_v2\bin\Debug\18003144_Task 1_v2.exe
+E:\Programs\Task 3\Task 1\18003144_Task 1_v2\18003144_Task 1_v2\bin\Debug\18003144_Task 1_v2.pdb
+E:\Programs\Task 3\Task 1\18003144_Task 1_v2\18003144_Task 1_v2\bin\Debug\ControlzEx.dll
+E:\Programs\Task 3\Task 1\18003144_Task 1_v2\18003144_Task 1_v2\bin\Debug\EntityFramework.dll
+E:\Programs\Task 3\Task 1\18003144_Task 1_v2\18003144_Task 1_v2\bin\Debug\EntityFramework.SqlServer.dll
+E:\Programs\Task 3\Task 1\18003144_Task 1_v2\18003144_Task 1_v2\bin\Debug\MahApps.Metro.dll
+E:\Programs\Task 3\Task 1\18003144_Task 1_v2\18003144_Task 1_v2\bin\Debug\MaterialDesignColors.dll
+E:\Programs\Task 3\Task 1\18003144_Task 1_v2\18003144_Task 1_v2\bin\Debug\MaterialDesignThemes.Wpf.dll
+E:\Programs\Task 3\Task 1\18003144_Task 1_v2\18003144_Task 1_v2\bin\Debug\Newtonsoft.Json.dll
+E:\Programs\Task 3\Task 1\18003144_Task 1_v2\18003144_Task 1_v2\bin\Debug\System.Windows.Interactivity.dll
+E:\Programs\Task 3\Task 1\18003144_Task 1_v2\18003144_Task 1_v2\bin\Debug\ControlzEx.pdb
+E:\Programs\Task 3\Task 1\18003144_Task 1_v2\18003144_Task 1_v2\bin\Debug\EntityFramework.xml
+E:\Programs\Task 3\Task 1\18003144_Task 1_v2\18003144_Task 1_v2\bin\Debug\EntityFramework.SqlServer.xml
+E:\Programs\Task 3\Task 1\18003144_Task 1_v2\18003144_Task 1_v2\bin\Debug\MahApps.Metro.pdb
+E:\Programs\Task 3\Task 1\18003144_Task 1_v2\18003144_Task 1_v2\bin\Debug\MahApps.Metro.xml
+E:\Programs\Task 3\Task 1\18003144_Task 1_v2\18003144_Task 1_v2\bin\Debug\MaterialDesignColors.pdb
+E:\Programs\Task 3\Task 1\18003144_Task 1_v2\18003144_Task 1_v2\bin\Debug\MaterialDesignThemes.Wpf.pdb
+E:\Programs\Task 3\Task 1\18003144_Task 1_v2\18003144_Task 1_v2\bin\Debug\MaterialDesignThemes.Wpf.xml
+E:\Programs\Task 3\Task 1\18003144_Task 1_v2\18003144_Task 1_v2\bin\Debug\Newtonsoft.Json.pdb
+E:\Programs\Task 3\Task 1\18003144_Task 1_v2\18003144_Task 1_v2\bin\Debug\Newtonsoft.Json.xml
+E:\Programs\Task 3\Task 1\18003144_Task 1_v2\18003144_Task 1_v2\obj\Debug\App.baml
+E:\Programs\Task 3\Task 1\18003144_Task 1_v2\18003144_Task 1_v2\obj\Debug\AddFavouritesWindow.baml
+E:\Programs\Task 3\Task 1\18003144_Task 1_v2\18003144_Task 1_v2\obj\Debug\CreateForecastWindow.baml
+E:\Programs\Task 3\Task 1\18003144_Task 1_v2\18003144_Task 1_v2\obj\Debug\EditForecastWindow.baml
+E:\Programs\Task 3\Task 1\18003144_Task 1_v2\18003144_Task 1_v2\obj\Debug\LoginWindow.baml
+E:\Programs\Task 3\Task 1\18003144_Task 1_v2\18003144_Task 1_v2\obj\Debug\MainWindow.baml
+E:\Programs\Task 3\Task 1\18003144_Task 1_v2\18003144_Task 1_v2\obj\Debug\RegisterWindow.baml
+E:\Programs\Task 3\Task 1\18003144_Task 1_v2\18003144_Task 1_v2\obj\Debug\ViewForecastsWindow.baml
+E:\Programs\Task 3\Task 1\18003144_Task 1_v2\18003144_Task 1_v2\obj\Debug\18003144_Task 1_v2.g.resources
+E:\Programs\Task 3\Task 1\18003144_Task 1_v2\18003144_Task 1_v2\obj\Debug\_18003144_Task_1_v2.Properties.Resources.resources
+E:\Programs\Task 3\Task 1\18003144_Task 1_v2\18003144_Task 1_v2\obj\Debug\18003144_Task 1_v2.csproj.GenerateResource.cache
+E:\Programs\Task 3\Task 1\18003144_Task 1_v2\18003144_Task 1_v2\obj\Debug\18003144_Task 1_v2.csproj.CoreCompileInputs.cache
+E:\Programs\Task 3\Task 1\18003144_Task 1_v2\18003144_Task 1_v2\obj\Debug\18003144_Task 1_v2.csproj.CopyComplete
+F:\__PROG POE Latest\Task 3\Task 1\18003144_Task 1_v2\18003144_Task 1_v2\bin\Debug\18003144_Task 1_v2.exe.config
+F:\__PROG POE Latest\Task 3\Task 1\18003144_Task 1_v2\18003144_Task 1_v2\bin\Debug\18003144_Task 1_v2.exe
+F:\__PROG POE Latest\Task 3\Task 1\18003144_Task 1_v2\18003144_Task 1_v2\bin\Debug\18003144_Task 1_v2.pdb
+F:\__PROG POE Latest\Task 3\Task 1\18003144_Task 1_v2\18003144_Task 1_v2\bin\Debug\ControlzEx.dll
+F:\__PROG POE Latest\Task 3\Task 1\18003144_Task 1_v2\18003144_Task 1_v2\bin\Debug\EntityFramework.dll
+F:\__PROG POE Latest\Task 3\Task 1\18003144_Task 1_v2\18003144_Task 1_v2\bin\Debug\EntityFramework.SqlServer.dll
+F:\__PROG POE Latest\Task 3\Task 1\18003144_Task 1_v2\18003144_Task 1_v2\bin\Debug\MahApps.Metro.dll
+F:\__PROG POE Latest\Task 3\Task 1\18003144_Task 1_v2\18003144_Task 1_v2\bin\Debug\MaterialDesignColors.dll
+F:\__PROG POE Latest\Task 3\Task 1\18003144_Task 1_v2\18003144_Task 1_v2\bin\Debug\MaterialDesignThemes.Wpf.dll
+F:\__PROG POE Latest\Task 3\Task 1\18003144_Task 1_v2\18003144_Task 1_v2\bin\Debug\Newtonsoft.Json.dll
+F:\__PROG POE Latest\Task 3\Task 1\18003144_Task 1_v2\18003144_Task 1_v2\bin\Debug\System.Windows.Interactivity.dll
+F:\__PROG POE Latest\Task 3\Task 1\18003144_Task 1_v2\18003144_Task 1_v2\bin\Debug\ControlzEx.pdb
+F:\__PROG POE Latest\Task 3\Task 1\18003144_Task 1_v2\18003144_Task 1_v2\bin\Debug\EntityFramework.xml
+F:\__PROG POE Latest\Task 3\Task 1\18003144_Task 1_v2\18003144_Task 1_v2\bin\Debug\EntityFramework.SqlServer.xml
+F:\__PROG POE Latest\Task 3\Task 1\18003144_Task 1_v2\18003144_Task 1_v2\bin\Debug\MahApps.Metro.pdb
+F:\__PROG POE Latest\Task 3\Task 1\18003144_Task 1_v2\18003144_Task 1_v2\bin\Debug\MahApps.Metro.xml
+F:\__PROG POE Latest\Task 3\Task 1\18003144_Task 1_v2\18003144_Task 1_v2\bin\Debug\MaterialDesignColors.pdb
+F:\__PROG POE Latest\Task 3\Task 1\18003144_Task 1_v2\18003144_Task 1_v2\bin\Debug\MaterialDesignThemes.Wpf.pdb
+F:\__PROG POE Latest\Task 3\Task 1\18003144_Task 1_v2\18003144_Task 1_v2\bin\Debug\MaterialDesignThemes.Wpf.xml
+F:\__PROG POE Latest\Task 3\Task 1\18003144_Task 1_v2\18003144_Task 1_v2\bin\Debug\Newtonsoft.Json.pdb
+F:\__PROG POE Latest\Task 3\Task 1\18003144_Task 1_v2\18003144_Task 1_v2\bin\Debug\Newtonsoft.Json.xml
+F:\__PROG POE Latest\Task 3\Task 1\18003144_Task 1_v2\18003144_Task 1_v2\obj\Debug\18003144_Task 1_v2.csprojAssemblyReference.cache
+F:\__PROG POE Latest\Task 3\Task 1\18003144_Task 1_v2\18003144_Task 1_v2\obj\Debug\AddFavouritesWindow.g.cs
+F:\__PROG POE Latest\Task 3\Task 1\18003144_Task 1_v2\18003144_Task 1_v2\obj\Debug\CreateForecastWindow.g.cs
+F:\__PROG POE Latest\Task 3\Task 1\18003144_Task 1_v2\18003144_Task 1_v2\obj\Debug\EditForecastWindow.g.cs
+F:\__PROG POE Latest\Task 3\Task 1\18003144_Task 1_v2\18003144_Task 1_v2\obj\Debug\LoginWindow.g.cs
+F:\__PROG POE Latest\Task 3\Task 1\18003144_Task 1_v2\18003144_Task 1_v2\obj\Debug\MainWindow.g.cs
+F:\__PROG POE Latest\Task 3\Task 1\18003144_Task 1_v2\18003144_Task 1_v2\obj\Debug\RegisterWindow.g.cs
+F:\__PROG POE Latest\Task 3\Task 1\18003144_Task 1_v2\18003144_Task 1_v2\obj\Debug\ViewForecastsWindow.g.cs
+F:\__PROG POE Latest\Task 3\Task 1\18003144_Task 1_v2\18003144_Task 1_v2\obj\Debug\App.g.cs
+F:\__PROG POE Latest\Task 3\Task 1\18003144_Task 1_v2\18003144_Task 1_v2\obj\Debug\18003144_Task 1_v2_Content.g.cs
+F:\__PROG POE Latest\Task 3\Task 1\18003144_Task 1_v2\18003144_Task 1_v2\obj\Debug\18003144_Task 1_v2_MarkupCompile.cache
+F:\__PROG POE Latest\Task 3\Task 1\18003144_Task 1_v2\18003144_Task 1_v2\obj\Debug\18003144_Task 1_v2_MarkupCompile.lref
+F:\__PROG POE Latest\Task 3\Task 1\18003144_Task 1_v2\18003144_Task 1_v2\obj\Debug\App.baml
+F:\__PROG POE Latest\Task 3\Task 1\18003144_Task 1_v2\18003144_Task 1_v2\obj\Debug\AddFavouritesWindow.baml
+F:\__PROG POE Latest\Task 3\Task 1\18003144_Task 1_v2\18003144_Task 1_v2\obj\Debug\CreateForecastWindow.baml
+F:\__PROG POE Latest\Task 3\Task 1\18003144_Task 1_v2\18003144_Task 1_v2\obj\Debug\EditForecastWindow.baml
+F:\__PROG POE Latest\Task 3\Task 1\18003144_Task 1_v2\18003144_Task 1_v2\obj\Debug\LoginWindow.baml
+F:\__PROG POE Latest\Task 3\Task 1\18003144_Task 1_v2\18003144_Task 1_v2\obj\Debug\MainWindow.baml
+F:\__PROG POE Latest\Task 3\Task 1\18003144_Task 1_v2\18003144_Task 1_v2\obj\Debug\RegisterWindow.baml
+F:\__PROG POE Latest\Task 3\Task 1\18003144_Task 1_v2\18003144_Task 1_v2\obj\Debug\ViewForecastsWindow.baml
+F:\__PROG POE Latest\Task 3\Task 1\18003144_Task 1_v2\18003144_Task 1_v2\obj\Debug\18003144_Task 1_v2.g.resources
+F:\__PROG POE Latest\Task 3\Task 1\18003144_Task 1_v2\18003144_Task 1_v2\obj\Debug\_18003144_Task_1_v2.Properties.Resources.resources
+F:\__PROG POE Latest\Task 3\Task 1\18003144_Task 1_v2\18003144_Task 1_v2\obj\Debug\18003144_Task 1_v2.csproj.GenerateResource.cache
+F:\__PROG POE Latest\Task 3\Task 1\18003144_Task 1_v2\18003144_Task 1_v2\obj\Debug\18003144_Task 1_v2.csproj.CoreCompileInputs.cache
+F:\__PROG POE Latest\Task 3\Task 1\18003144_Task 1_v2\18003144_Task 1_v2\obj\Debug\18003144_Task 1_v2.csproj.CopyComplete
+F:\__PROG POE Latest\Task 3\Task 1\18003144_Task 1_v2\18003144_Task 1_v2\obj\Debug\18003144_Task 1_v2.exe
+F:\__PROG POE Latest\Task 3\Task 1\18003144_Task 1_v2\18003144_Task 1_v2\obj\Debug\18003144_Task 1_v2.pdb

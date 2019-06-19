@@ -30,7 +30,7 @@ namespace _18003144_Task_1_v2
 
         private void Window_Loaded(object sender, RoutedEventArgs e)
         {
-            grdMain.Background = FileUtilities.ChooseBackground(); //Randomly select background
+            grdMain.Background = DataUtilities.ChooseBackground(); //Randomly select background
             loggedInUser = new User();
             txtUsername.Focus();
         }
@@ -57,7 +57,7 @@ namespace _18003144_Task_1_v2
 
             bool valid = false;
             //Read all users from file
-            List<User> users = FileUtilities.GetUsersFromFile();
+            List<User> users = DataUtilities.GetUsersFromDB();
             foreach(User user in users)
             {
                 if (user.Username.ToLower().Equals(username.ToLower()) && user.Password.Equals(hash)){

@@ -20,7 +20,7 @@ namespace _18003144_Task_1_v2
 {
     public partial class MainWindow : Window
     {
-        List<string> favCityIds;
+        List<int> favCityIds;
         private Dictionary<int, City> codeCityDict;
 
         User user;
@@ -125,31 +125,10 @@ namespace _18003144_Task_1_v2
             if (confirmResult == System.Windows.MessageBoxResult.No) return;
 
             //Remove city from list
-            favCityIds.Remove(favCityIds.Where(f=> f.Equals(clickedId)).ToList()[0]);
+            favCityIds.Remove(favCityIds.Where(f=> f == Convert.ToInt32(clickedId)).ToList()[0]);
 
             //Get current lines in file
-            List<string> lines = File.ReadAllLines("Favourites.txt").ToList();
-
-            //Remove line for user
-            lines.Remove(lines.Where(line => line.Split(',')[0].Equals(user.Username)).ToList()[0]);
-
-            //Recreate new line as username,id,id,id...
-            string newLine = user.Username;
-            foreach (var id in favCityIds)
-            {
-                newLine += "," + id;
-            }
-
-            lines.Add(newLine);
-
-            //Write new line back to file
-            using (StreamWriter file = new StreamWriter("Favourites.txt", false))
-            {
-                foreach(var line in lines)
-                {
-                    file.WriteLine(line);
-                }
-            }
+            DataUtilities.DeleteFavouriteCity(user.Username, Convert.ToInt32(clickedId));
 
             Window_Loaded(null, null);
 
@@ -212,16 +191,11 @@ namespace _18003144_Task_1_v2
         // Read all city IDs from file into list
         private void populateFavouriteCityIds()
         {
-            favCityIds = new List<string>();
+            favCityIds = new List<int>();
 
             //Gets all users favourites
-            string[] lines = File.ReadAllLines("Favourites.txt");
-
-            //Gets line where the username is equal to the user's username
-            favCityIds = lines.Where(line => line.Split(',')[0].Equals(user.Username)).ToList()[0].Split(',').ToList();
-            //Removes username from line
-            favCityIds.RemoveAt(0);
-
+            favCityIds = DataUtilities.GetFavouriteCityIDsFromDB(user.Username);
+            Console.WriteLine();
         }
 
         private void Window_Activated(object sender, EventArgs e)
@@ -246,5 +220,6 @@ namespace _18003144_Task_1_v2
             this.Hide();
             new LoginWindow().Show();
         }
+
     }
 }

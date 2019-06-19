@@ -23,10 +23,10 @@ namespace _18003144_Task_1_v2
     {
         Dictionary<string, City> NameCityDict;
         User user;
-        List<string> favCityIds;
+        List<int> favCityIds;
 
 
-        public AddFavouritesWindow(User user, List<string> favCityIds)
+        public AddFavouritesWindow(User user, List<int> favCityIds)
         {
             InitializeComponent();
             WindowStartupLocation = System.Windows.WindowStartupLocation.CenterScreen;
@@ -36,7 +36,7 @@ namespace _18003144_Task_1_v2
 
         private void Window_Loaded(object sender, RoutedEventArgs e)
         {
-            grdMain.Background = FileUtilities.ChooseBackground(); //Randomly select background
+            grdMain.Background = DataUtilities.ChooseBackground(); //Randomly select background
 
             NameCityDict = CityUtilities.getNameCityDict(); // Get dictionary of City Names to City objects
 
@@ -64,31 +64,9 @@ namespace _18003144_Task_1_v2
             if (!alreadyFavourite(((City)lstCities.SelectedItem).id))
             {
                 //Add new city to list
-                favCityIds.Add(((City)lstCities.SelectedItem).id + "");
+                favCityIds.Add(((City)lstCities.SelectedItem).id);
 
-                //Get current lines in file
-                List<string> lines = File.ReadAllLines("Favourites.txt").ToList();
-
-                //Remove line for user
-                lines.Remove(lines.Where(line => line.Split(',')[0].Equals(user.Username)).ToList()[0]);
-
-                //Recreate new line as username,id,id,id...
-                string newLine = user.Username;
-                foreach (var id in favCityIds)
-                {
-                    newLine += "," + id;
-                }
-
-                lines.Add(newLine);
-
-                //Write new line back to file
-                using (StreamWriter file = new StreamWriter("Favourites.txt", false))
-                {
-                    foreach (string line in lines)
-                    {
-                        file.WriteLine(line);
-                    }
-                }
+                DataUtilities.AddFavouriteCity(user.Username, ((City)lstCities.SelectedItem).id);
             }
 
 
@@ -98,7 +76,7 @@ namespace _18003144_Task_1_v2
         //Check IDs in file and see if the specified ID is already in the file
         private bool alreadyFavourite(int id)
         {
-            return favCityIds.Contains(id + "");
+            return DataUtilities.GetFavouriteCityIDsFromDB(user.Username).Any(_id => _id == id);
         }
     }
 }

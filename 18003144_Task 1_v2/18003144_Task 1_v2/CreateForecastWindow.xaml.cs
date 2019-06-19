@@ -38,7 +38,7 @@ namespace _18003144_Task_1_v2
 
         private void Window_Loaded(object sender, RoutedEventArgs e)
         {
-            grdMain.Background = FileUtilities.ChooseBackground(); //Randomly select background
+            grdMain.Background = DataUtilities.ChooseBackground(); //Randomly select background
 
             NameCityDict = CityUtilities.getNameCityDict(); // Get dictionary of City Name to City objects
             txtCity.Focus();
@@ -190,20 +190,17 @@ namespace _18003144_Task_1_v2
 
             crdError.Visibility = Visibility.Hidden;
 
-            using (StreamWriter file = new StreamWriter("Forecasts.txt", true))
-            {
-                UserForecast forecast = new UserForecast(((City)lstCities.SelectedItem).id, (DateTime)dtpDate.SelectedDate, Convert.ToInt16(txtMin.Text), Convert.ToInt16(txtMax.Text), Convert.ToInt16(txtWind.Text), Convert.ToInt16(txtHumidity.Text), Convert.ToInt16(txtPrecip.Text));
-                file.WriteLine(forecast.GetTextFileFormat());
-                MessageBox.Show("Forecast added!");
-                clearForm();
-            }
+            UserForecast forecast = new UserForecast(0, ((City)lstCities.SelectedItem).id, (DateTime)dtpDate.SelectedDate, Convert.ToInt16(txtMin.Text), Convert.ToInt16(txtMax.Text), Convert.ToInt16(txtWind.Text), Convert.ToInt16(txtHumidity.Text), Convert.ToInt16(txtPrecip.Text));
+            DataUtilities.InsertForecast(forecast);
+            MessageBox.Show("Forecast added!");
+            clearForm();
 
         }
 
         //Check text file for forecast with same city and date
         private bool unique()
         {
-            List<UserForecast> fc = FileUtilities.GetForecastsFromFile();
+            List<UserForecast> fc = DataUtilities.GetForecastsFromDB();
             DateTime selectedDate = ((DateTime)dtpDate.SelectedDate).Date;
             int selectedCityID = ((City)lstCities.SelectedItem).id;
             //If there are any forecasts with the same city ID and forecast date

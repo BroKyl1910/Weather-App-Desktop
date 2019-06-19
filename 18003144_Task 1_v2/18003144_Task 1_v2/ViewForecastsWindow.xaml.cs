@@ -40,9 +40,9 @@ namespace _18003144_Task_1_v2
                 btnAddForecast.Visibility = Visibility.Hidden;
             }
 
-            grdMain.Background = FileUtilities.ChooseBackground(); //Randomly select background
+            grdMain.Background = DataUtilities.ChooseBackground(); //Randomly select background
             codeCityDict = CityUtilities.getCityCodeDict(); //Get dictionary of City Codes to City Objects
-            forecasts = FileUtilities.GetForecastsFromFile(); //Get forecasts from file
+            forecasts = DataUtilities.GetForecastsFromDB(); //Get forecasts from file
             populateListBox(); //Populate list box with cities
 
             //Set defaults
@@ -110,7 +110,11 @@ namespace _18003144_Task_1_v2
 
             string fileTimeStamp = DateTime.UtcNow.ToFileTimeUtc()+"";
 
-            if(user.UserType == UserType.Forecaster)
+            var writeReport = MessageBox.Show("Would you like to save this report to file?",
+                                     "Save Report",
+                                     System.Windows.MessageBoxButton.YesNo);
+
+            if(user.UserType == UserType.Forecaster && writeReport == System.Windows.MessageBoxResult.Yes)
             {
                 startWritingToReportFile(fileTimeStamp);
             }
@@ -367,7 +371,7 @@ namespace _18003144_Task_1_v2
                 }
                 #endregion
 
-                if (user.UserType == UserType.Forecaster)
+                if (user.UserType == UserType.Forecaster && writeReport==System.Windows.MessageBoxResult.Yes)
                 {
                     writeForecastToFile(fileTimeStamp, dt, fc, nm);
                 }
@@ -377,6 +381,11 @@ namespace _18003144_Task_1_v2
             }
 
             tbctrlForecasts.SelectedIndex = 0;
+            if (user.UserType == UserType.Forecaster && writeReport == System.Windows.MessageBoxResult.Yes)
+            {
+                MessageBox.Show("Report saved as Report - " + fileTimeStamp + ".txt");
+            }
+
         }
 
         private void startWritingToReportFile(string timestamp)

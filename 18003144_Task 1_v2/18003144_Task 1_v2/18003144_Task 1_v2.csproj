@@ -38,6 +38,12 @@
     <Reference Include="ControlzEx, Version=3.0.2.4, Culture=neutral, processorArchitecture=MSIL">
       <HintPath>..\packages\ControlzEx.3.0.2.4\lib\net45\ControlzEx.dll</HintPath>
     </Reference>
+    <Reference Include="EntityFramework, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
+      <HintPath>..\packages\EntityFramework.6.2.0\lib\net45\EntityFramework.dll</HintPath>
+    </Reference>
+    <Reference Include="EntityFramework.SqlServer, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
+      <HintPath>..\packages\EntityFramework.6.2.0\lib\net45\EntityFramework.SqlServer.dll</HintPath>
+    </Reference>
     <Reference Include="MahApps.Metro, Version=1.6.5.1, Culture=neutral, processorArchitecture=MSIL">
       <HintPath>..\packages\MahApps.Metro.1.6.5\lib\net46\MahApps.Metro.dll</HintPath>
     </Reference>
@@ -51,7 +57,10 @@
       <HintPath>..\packages\Newtonsoft.Json.12.0.1\lib\net45\Newtonsoft.Json.dll</HintPath>
     </Reference>
     <Reference Include="System" />
+    <Reference Include="System.ComponentModel.DataAnnotations" />
     <Reference Include="System.Data" />
+    <Reference Include="System.Runtime.Serialization" />
+    <Reference Include="System.Security" />
     <Reference Include="System.Windows.Forms" />
     <Reference Include="System.Windows.Interactivity, Version=4.5.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
       <HintPath>..\packages\ControlzEx.3.0.2.4\lib\net45\System.Windows.Interactivity.dll</HintPath>
@@ -75,11 +84,20 @@
       <SubType>Designer</SubType>
     </ApplicationDefinition>
     <Compile Include="CityUtilities.cs" />
+    <Compile Include="DB_Favourite.cs">
+      <DependentUpon>WeatherForecastAppModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DB_Forecast.cs">
+      <DependentUpon>WeatherForecastAppModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DB_User.cs">
+      <DependentUpon>WeatherForecastAppModel.tt</DependentUpon>
+    </Compile>
     <Compile Include="EditForecastWindow.xaml.cs">
       <DependentUpon>EditForecastWindow.xaml</DependentUpon>
     </Compile>
     <Compile Include="Encryption.cs" />
-    <Compile Include="FileUtilities.cs" />
+    <Compile Include="DataUtilities.cs" />
     <Compile Include="LoginWindow.xaml.cs">
       <DependentUpon>LoginWindow.xaml</DependentUpon>
     </Compile>
@@ -90,6 +108,21 @@
     <Compile Include="UserForecast.cs" />
     <Compile Include="ViewForecastsWindow.xaml.cs">
       <DependentUpon>ViewForecastsWindow.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="WeatherForecastAppModel.Context.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>WeatherForecastAppModel.Context.tt</DependentUpon>
+    </Compile>
+    <Compile Include="WeatherForecastAppModel.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>WeatherForecastAppModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="WeatherForecastAppModel.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>WeatherForecastAppModel.edmx</DependentUpon>
     </Compile>
     <Page Include="AddFavouritesWindow.xaml">
       <SubType>Designer</SubType>
@@ -159,9 +192,33 @@
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>
     </None>
+    <EntityDeploy Include="WeatherForecastAppModel.edmx">
+      <Generator>EntityModelCodeGenerator</Generator>
+      <LastGenOutput>WeatherForecastAppModel.Designer.cs</LastGenOutput>
+    </EntityDeploy>
+    <None Include="WeatherForecastAppModel.edmx.diagram">
+      <DependentUpon>WeatherForecastAppModel.edmx</DependentUpon>
+    </None>
   </ItemGroup>
   <ItemGroup>
-    <None Include="App.config" />
+    <None Include="App.config">
+      <SubType>Designer</SubType>
+    </None>
+  </ItemGroup>
+  <ItemGroup>
+    <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="WeatherForecastAppModel.Context.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <DependentUpon>WeatherForecastAppModel.edmx</DependentUpon>
+      <LastGenOutput>WeatherForecastAppModel.Context.cs</LastGenOutput>
+    </Content>
+    <Content Include="WeatherForecastAppModel.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <DependentUpon>WeatherForecastAppModel.edmx</DependentUpon>
+      <LastGenOutput>WeatherForecastAppModel.cs</LastGenOutput>
+    </Content>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
